@@ -1,0 +1,147 @@
+.gitignore
+  s_38fa082a66cb80::t_9a525a3efc0773 1-4
+manuscript/Book.txt
+  s_38fa082a66cb80::t_2fa78f31528713 1-59
+manuscript/accounting-for-architects.md
+  s_38fa082a66cb80::t_3af94cfe7bf55c 1-617
+manuscript/adyen.md
+  s_38fa082a66cb80::t_801fb4a834122d 1-587
+manuscript/ai-in-finance.md
+  s_38fa082a66cb80::t_01d7fbd7973d0e 1-477
+manuscript/application-portfolio.md
+  s_38fa082a66cb80::t_ff724cdf4bb294 1-589
+manuscript/architecture-governance.md
+  s_38fa082a66cb80::t_fb00303279a828 1-459
+manuscript/bibliography.md
+  s_38fa082a66cb80::t_d4d851617fbaa8 1-637
+manuscript/blackline.md
+  s_38fa082a66cb80::t_d5c6c7953f8650 1-547
+manuscript/book-title.md
+  s_38fa082a66cb80::t_c32cf9423fa2c6 1-17
+manuscript/brands-entities-markets.md
+  s_38fa082a66cb80::t_f7c8b6979c0c2b 1-467
+manuscript/build-versus-buy.md
+  s_38fa082a66cb80::t_81dd75080a01b4 1-441
+manuscript/capability-mapping.md
+  s_38fa082a66cb80::t_db93dde6fd39c6 1-534
+manuscript/case-uber-payments.md
+  s_38fa082a66cb80::t_647fdd6d1eb6fa 1-459
+manuscript/chief-architect-role.md
+  s_38fa082a66cb80::t_0cfe582c36f227 1-409
+manuscript/controls-and-auditability.md
+  s_38fa082a66cb80::t_d133cc0f726659 1-512
+manuscript/custom-finance-platforms.md
+  s_38fa082a66cb80::t_2204c2ea0cd47a 1-422
+manuscript/designing-financial-ledgers.md
+  s_38fa082a66cb80::t_02afa34926a995 1-677
+manuscript/export-manifest.json
+  s_38fa082a66cb80::t_c0ae0ace1ebd67 1-1919
+manuscript/finance-data-architecture.md
+  s_38fa082a66cb80::t_04a0bda955fb7e 1-495
+manuscript/finance-data-flows.md
+  s_38fa082a66cb80::t_5564157f9ad661 1-531
+manuscript/finance-landscape.md
+  s_38fa082a66cb80::t_a2056cdaebfe39 1-529
+manuscript/finance-processes.md
+  s_38fa082a66cb80::t_6c093074810455 1-547
+manuscript/finance-transformation.md
+  s_38fa082a66cb80::t_7d7d452ebb72d1 1-526
+manuscript/finops.md
+  s_38fa082a66cb80::t_c6a6920f632cfd 1-495
+manuscript/global-scale.md
+  s_38fa082a66cb80::t_6ffef7ded1a89b 1-506
+manuscript/glossary.md
+  s_38fa082a66cb80::t_f4254d2ba62fa6 1-379
+manuscript/incremental-modernization.md
+  s_38fa082a66cb80::t_accb63d70c65f1 1-454
+manuscript/integration-architecture.md
+  s_38fa082a66cb80::t_f3d5e3c2e8eb74 1-513
+manuscript/introduction.md
+  s_38fa082a66cb80::t_570eac62af812e 1-185
+manuscript/long-term-evolution.md
+  s_38fa082a66cb80::t_0ed81c27c7b944 1-433
+manuscript/loosely-coupled-domains.md
+  s_38fa082a66cb80::t_b0a67ed5ad642d 1-555
+manuscript/meet-northmere.md
+  s_38fa082a66cb80::t_e8b8ee6f6c7775 1-253
+manuscript/modernization-patterns.md
+  s_38fa082a66cb80::t_e8224a7edcdbf9 1-422
+manuscript/multiple-erps.md
+  s_38fa082a66cb80::t_caa31052896bf1 1-439
+manuscript/onestream.md
+  s_38fa082a66cb80::t_11c361949555be 1-444
+manuscript/oracle-fusion.md
+  s_38fa082a66cb80::t_6d19e2236907ff 1-510
+manuscript/organizing-for-architecture.md
+  s_38fa082a66cb80::t_58b15b9a62cc60 1-476
+manuscript/part-1.md
+  s_38fa082a66cb80::t_925ca78fad6354 1-70
+manuscript/part-2.md
+  s_38fa082a66cb80::t_ec324a8ca17137 1-69
+manuscript/part-3.md
+  s_38fa082a66cb80::t_e6593acf5ab4ca 1-68
+manuscript/part-4.md
+  s_38fa082a66cb80::t_0b7c88e0be0e23 1-69
+manuscript/part-5.md
+  s_38fa082a66cb80::t_497b20e8a1274a 1-55
+manuscript/payments-fundamentals.md
+  s_38fa082a66cb80::t_2ef305252a7865 1-544
+manuscript/payments-to-ledger.md
+  s_38fa082a66cb80::t_784cd89aa79827 1-604
+manuscript/principles-standards-reference.md
+  s_38fa082a66cb80::t_6608672b19ed36 1-527
+manuscript/redundancy-and-coupling.md
+  s_38fa082a66cb80::t_16fd6853273208 1-470
+manuscript/resilience-and-security.md
+  s_38fa082a66cb80::t_5e87d1cf57a256 1-526
+manuscript/sap-s4hana.md
+  s_38fa082a66cb80::t_3b31268abc8b2b 1-547
+manuscript/satellite-platforms.md
+  s_38fa082a66cb80::t_e1ec632a69f4db 1-597
+manuscript/section-01.md
+  s_38fa082a66cb80::t_e6aa2866ac21b3 1-4
+manuscript/section-07.md
+  s_38fa082a66cb80::t_d347783d5327d2 1-4
+manuscript/stripe.md
+  s_38fa082a66cb80::t_1a859501c6d165 1-546
+manuscript/systems-of-record.md
+  s_38fa082a66cb80::t_57b6d678e2a35b 1-415
+manuscript/target-and-transition-states.md
+  s_38fa082a66cb80::t_f5a0cf2b40fe75 1-456
+manuscript/technical-debt-and-fitness.md
+  s_38fa082a66cb80::t_a18a6c7d10519a 1-415
+manuscript/toolkit.md
+  s_38fa082a66cb80::t_3941bc16a7e5a3 1-790
+manuscript/traceability-and-reconciliation.md
+  s_38fa082a66cb80::t_ad8ed72e2d5a10 1-468
+manuscript/transaction-to-report.md
+  s_38fa082a66cb80::t_10ad9b0dd4776a 1-545
+manuscript/vendor-portfolio-strategy.md
+  s_38fa082a66cb80::t_a4bb1a64b515f1 1-436
+manuscript/where-finance-architecture-goes-wrong.md
+  s_38fa082a66cb80::t_62a5b85ec5b49a 1-374
+manuscript/workday.md
+  s_38fa082a66cb80::t_510f138118b54a 1-544
+publish.sh
+  s_38fa082a66cb80::t_69e8a7797a519a 1-8
+scripts/leanpub_build.py
+  s_38fa082a66cb80::t_f01e77699c9dae 1-128
+update.sh
+  s_38fa082a66cb80::t_1c04ba18b29f1b 1-13
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "4e9885e3e667cd6cb0467dea93d654276846db62",
+  "prompts": {},
+  "sessions": {
+    "s_38fa082a66cb80": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "7d4c8532-df4e-4199-a27a-c0c2fa78515b",
+        "model": "unknown"
+      },
+      "human_author": "Zeljko Obrenovic <zeljkoobrenovic@yahoo.com>"
+    }
+  }
+}
