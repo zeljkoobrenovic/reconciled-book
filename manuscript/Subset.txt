@@ -1,3 +1,2 @@
 book-title.md
-section-01.md
-introduction.md
+long-term-evolution.md
