@@ -1,3 +1,2 @@
 book-title.md
-stripe.md
-satellite-platforms.md
+part-3.md
