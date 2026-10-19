@@ -1,0 +1,14 @@
+.gitignore
+  h_32d60cd4daf66e 5
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "7be5fed40369f5dbb8d80309c6fcaa1f8e2d2828",
+  "prompts": {},
+  "humans": {
+    "h_32d60cd4daf66e": {
+      "author": "Zeljko Obrenovic <zeljkoobrenovic@yahoo.com>"
+    }
+  }
+}
