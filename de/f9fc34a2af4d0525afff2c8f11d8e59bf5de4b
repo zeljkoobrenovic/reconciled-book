@@ -1,0 +1,19 @@
+manuscript/Subset.txt
+  s_9df9ee76223f27::t_ef28704a11032f 1-3
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "def9fc34a2af4d0525afff2c8f11d8e59bf5de4b",
+  "prompts": {},
+  "sessions": {
+    "s_9df9ee76223f27": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "bd13f423-3f98-4622-8f3a-89dd234caad9",
+        "model": "claude-opus-5-5"
+      },
+      "human_author": "Zeljko Obrenovic <zeljkoobrenovic@yahoo.com>"
+    }
+  }
+}
