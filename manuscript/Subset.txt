@@ -1,2 +1,14 @@
 book-title.md
-transaction-to-report.md
+payments-to-ledger.md
+finance-data-flows.md
+systems-of-record.md
+multiple-erps.md
+redundancy-and-coupling.md
+loosely-coupled-domains.md
+traceability-and-reconciliation.md
+brands-entities-markets.md
+incremental-modernization.md
+part-4.md
+architecture-governance.md
+principles-standards-reference.md
+target-and-transition-states.md
