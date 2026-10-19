@@ -1,5 +1,3 @@
 book-title.md
-blackline.md
-onestream.md
-payments-fundamentals.md
-adyen.md
+stripe.md
+satellite-platforms.md
