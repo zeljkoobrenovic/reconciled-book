@@ -213,7 +213,7 @@ An **alternative payment method (APM)** is any way to pay other than a card on t
 | --- | --- | --- | --- | --- | --- |
 | Card-based wallets | Apple Pay, Google Pay | Yes, as cards | As cards | Card chargebacks | As cards |
 | Own-network wallets | PayPal | Method-specific | Method-specific | Provider's process; Stripe notes such methods "typically allow customers up to 180 days" | Provider-specific |
-| Bank redirect | iDEAL (now "iDEAL \| Wero") | No | At payment (a push from the payer's bank) | No card-style chargeback | Provider-specific |
+| Bank redirect | iDEAL (now "iDEAL Wero") | No | At payment (a push from the payer's bank) | No card-style chargeback | Provider-specific |
 | Instant account-to-account | Pix (Brazil), UPI (India, operated by the National Payments Corporation of India, NPCI) | No | Near-immediate | Scheme-specific return mechanisms (verify per market) | Often daily; sometimes pass-through only |
 | Buy-now-pay-later | Klarna, Afterpay, Affirm | Yes, with method-specific windows (Stripe: Klarna by the 28th day, Afterpay 13 days, Affirm 30) | When the lender pays the merchant | The lender's process | Lender pays merchant; consumer repays lender |
 | Direct debit | SEPA Direct Debit, ACH | Pull payment | Only after the return window | Long return rights | Stripe: ACH Debit 4 business days, SEPA Direct Debit 6 |
