@@ -1,8 +1,5 @@
 book-title.md
-modernization-patterns.md
-part-2.md
-custom-finance-platforms.md
-designing-financial-ledgers.md
-sap-s4hana.md
-workday.md
-oracle-fusion.md
+blackline.md
+onestream.md
+payments-fundamentals.md
+adyen.md
