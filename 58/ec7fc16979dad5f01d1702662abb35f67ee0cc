@@ -1,0 +1,14 @@
+scripts/leanpub_build.py
+  h_32d60cd4daf66e 88
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "58ec7fc16979dad5f01d1702662abb35f67ee0cc",
+  "prompts": {},
+  "humans": {
+    "h_32d60cd4daf66e": {
+      "author": "Zeljko Obrenovic <zeljkoobrenovic@yahoo.com>"
+    }
+  }
+}
