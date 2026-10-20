@@ -26,7 +26,7 @@ Every case chapter sorts its statements into three kinds, and the wording says w
 - **Interpretation**: my reading of what the documented facts imply, marked as mine.
 - **Not public**: what a finance architect would need to know and the record does not show, named rather than guessed.
 
-![The evidence boundary. A lesson rests on what is documented and on an interpretation the reader can check; what is not public is named so that it becomes part of your own design work rather than an assumption.](finance-systems-architecture/diagrams/0712ed34757b19c6.png)
+![Documented sources lead to an interpretation and then a lesson; a box marked not public sends a dashed arrow labeled design it yourself into the lesson.](finance-systems-architecture/posts/part-5-intro/assets/images/part-5-intro/evidence-boundary.jpeg)
 
 **Figure 1:** *The evidence boundary. A lesson rests on what is documented and on an interpretation the reader can check; what is not public is named so that it becomes part of your own design work rather than an assumption.*
 

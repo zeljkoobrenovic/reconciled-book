@@ -77,7 +77,7 @@ The fourth idea is **time**. Every hop has at least three dates, and the trace u
 
 Figure 1 is the Lisbon booking's chain as Dana's team drew it after the walkthrough, with the dates of the scenario.
 
-![The Lisbon booking crosses eleven systems. Money moves along one path (Adyen, bank, partner) and records along another (events, subledger, GL, consolidation, filing); the two meet only at the reconciliations in BlackLine and at the subledger-to-GL tie-out, which is why those are the controls that hold the chain together.](finance-systems-architecture/diagrams/eb56b11ef69c3384.png)
+![Money flows from the provider to the bank and on to the partner, while records flow from events through the subledger, general ledger and consolidation to filing; the two paths meet only at bank reconciliation and the subledger-to-ledger tie-out.](finance-systems-architecture/posts/24-transaction-to-report/assets/images/24-transaction-to-report/money-path-and-record-path.jpeg)
 
 **Figure 1:** *The Lisbon booking crosses eleven systems. Money moves along one path (Adyen, bank, partner) and records along another (events, subledger, GL, consolidation, filing); the two meet only at the reconciliations in BlackLine and at the subledger-to-GL tie-out, which is why those are the controls that hold the chain together.*
 
@@ -265,7 +265,7 @@ The table is the walkthrough document Mei Tanaka now gives the auditor at the st
 
 Figure 3 shows the same chain against the calendar, which is where period errors are found.
 
-![The booking spans two periods, two closes and three filings. The cash arrives in March, the revenue in April, and the Q1 10-Q is filed while the April close is running, so the chain needs period-correct dates at every hop and no system may reassign a period it did not own.](finance-systems-architecture/diagrams/497ff0f4e3871483.png)
+![A timeline with cash arriving on 16 March and revenue on 21 April; the March close feeds the Q1 10-Q, filed during April, and April feeds the Q2 10-Q and later the 10-K.](finance-systems-architecture/posts/24-transaction-to-report/assets/images/24-transaction-to-report/two-periods-two-closes.jpeg)
 
 **Figure 3:** *The booking spans two periods, two closes and three filings. The cash arrives in March, the revenue in April, and the Q1 10-Q is filed while the April close is running, so the chain needs period-correct dates at every hop and no system may reassign a period it did not own.*
 
@@ -323,7 +323,7 @@ The chain differs from Lisbon's in four ways:
 - **Two translations exist.** Fusion keeps a US dollar reporting currency on Wayfare's euro ledgers, and OneStream translates the same balances again from Kyriba's rates, breaking the rule to translate once, in consolidation. Hana Kowalski's team explains the differences every quarter.
 - **Intercompany and supplier payment stay inside Wayfare.** Fusion reconciles Wayfare's intercompany, and the operator is paid from Wayfare's own bank, outside the Kyriba payment factory; the group's controls see both only as balances.
 
-![Three business models, three chains, one consolidation. Only Stayloft's chain joins the group in the general ledger; Tablekin and Wayfare join in OneStream, so for two of the three chains the mapping rule is the first group-level control their transactions meet.](finance-systems-architecture/diagrams/f44e537a1f76a334.png)
+![Three chains converge on one consolidation: Stayloft through its subledger and the group ledger, Tablekin and Wayfare through their own ledgers and a mapping step, with consolidation feeding the filings.](finance-systems-architecture/posts/24-transaction-to-report/assets/images/24-transaction-to-report/three-chains-one-consolidation.jpeg)
 
 **Figure 4:** *Three business models, three chains, one consolidation. Only Stayloft's chain joins the group in the general ledger; Tablekin and Wayfare join in OneStream, so for two of the three chains the mapping rule is the first group-level control their transactions meet.*
 

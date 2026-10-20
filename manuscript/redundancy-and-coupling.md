@@ -106,7 +106,7 @@ The five decision verbs have precise meanings. **Accept** keeps the duplication 
 {id: redundancy-and-coupling--how-a-row-moves}
 ### How a row moves
 
-![The lifecycle of an overlap-register row. Every row ends in a decision state; an accepted row returns to assessment at its review date, and a resolved row closes only when the exit evidence is filed.](finance-systems-architecture/diagrams/d5107251f004b049.png)
+![An overlap-register row moves from Detected to Assessed, then to Accepted, Contained, In transition or Prevented; Contained moves to In transition, In transition ends in Resolved with evidence filed, and Accepted loops back to Assessed at its review date.](finance-systems-architecture/posts/29-redundancy-and-coupling/assets/images/29-redundancy-and-coupling/overlap-row-lifecycle.jpeg)
 
 **Figure 1:** *The lifecycle of an overlap-register row. Every row ends in a decision state; an accepted row returns to assessment at its review date, and a resolved row closes only when the exit evidence is filed.*
 
@@ -131,7 +131,7 @@ The excerpt below shows the rows the steering committee discussed. Volumes are m
 
 Two features of the excerpt are worth noticing. First, **the register splits rows by scope when the decision differs by scope.** Partner payouts appear three times, because Wayfare's suppliers, Tablekin's venues and a proposed Adyen product each get a different verb. A register that forced one verb per capability would either overrule Tablekin's legitimate model or wave through Wayfare's engine. Second, **the register records decisions taken elsewhere rather than retaking them.** The three integration technologies were decided by the design authority in June 2027, together with the canonical events v1; the row points to that record and carries its dates, so the register stays one list without becoming a second forum.
 
-![Northmere's overlap map in October 2027. Every implementation of the four March overlaps now carries a verb and a date; the dotted line is a duplication the register prevented.](finance-systems-architecture/diagrams/c7412016704dea5c.png)
+![Four capabilities — partner payouts, invoicing, reconciliation and indirect tax — each branching to several systems tagged with a verb and date such as converge 2029 or retire 2028, with one dotted branch to a prevented duplicate.](finance-systems-architecture/posts/29-redundancy-and-coupling/assets/images/29-redundancy-and-coupling/overlap-map-2027.jpeg)
 
 **Figure 2:** *Northmere's overlap map in October 2027. Every implementation of the four March overlaps now carries a verb and a date; the dotted line is a duplication the register prevented.*
 
@@ -193,7 +193,7 @@ Melvin Conway's 1968 observation that systems mirror the communication structure
 
 Lucía's team scored the twelve busiest finance boundaries on the six types, using the interface catalog, incident records and release data. The diagram shows the hottest edges.
 
-![Coupling heat on Northmere's busiest finance boundaries, Q3 2027. The hottest edges cluster around Wayfare: a shared database replica, an undefined handover of cancellations to the ledger, quarterly vendor releases and one team on every path.](finance-systems-architecture/diagrams/5e894783bb4e49d1.png)
+![A heat map of finance system boundaries: red, hot edges cluster around Wayfare — a shared database link from the booking platform, the payout engine to Fusion, vendor releases to MuleSoft and one team on every path — while the SAP side has one hot nightly window and medium edges into OneStream.](finance-systems-architecture/posts/29-redundancy-and-coupling/assets/images/29-redundancy-and-coupling/coupling-heat-map.jpeg)
 
 **Figure 4:** *Coupling heat on Northmere's busiest finance boundaries, Q3 2027. The hottest edges cluster around Wayfare: a shared database replica, an undefined handover of cancellations to the ledger, quarterly vendor releases and one team on every path.*
 
@@ -274,7 +274,7 @@ One difference is not configuration. Stayloft merchant payouts are paid from **s
 {id: redundancy-and-coupling--the-sequence}
 ### The sequence
 
-![The payout-engine collapse as gated stages. Fixing the shadow balance and removing the shared database come before any supplier moves; the parallel run loops back to configuration until every difference is explained.](finance-systems-architecture/diagrams/c544311e77b70185.png)
+![Eight gated stages from preconditions, clearing the shadow balance and cutting the shared replica, through configuration, bank-detail re-verification and a parallel run that loops back to configuration, to cohort cutover and decommissioning.](finance-systems-architecture/posts/29-redundancy-and-coupling/assets/images/29-redundancy-and-coupling/payout-collapse-gates.jpeg)
 
 **Figure 5:** *The payout-engine collapse as gated stages. Fixing the shadow balance and removing the shared database come before any supplier moves; the parallel run loops back to configuration until every difference is explained.*
 

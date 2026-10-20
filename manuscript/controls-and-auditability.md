@@ -91,7 +91,7 @@ A **control** is a specific activity that reduces the risk that a financial stat
 | **IT operations** | Job scheduling and monitoring; interface failure handling; backup and recovery; incident management | Monitored schedules, interface error queues with owners, restore tests, incident records linked to financial impact |
 | **Program development (implementation)** | Controls over new systems and data migrations, especially the completeness and accuracy of migrated balances | Migration reconciliations as go-live gates (see [Changing the Engine in Flight: Modernization Patterns for Finance](#modernization-patterns)) |
 
-![The reliance chain. Automated controls and system-generated reports are trusted only because the general IT controls beneath them operated all year; a failed access or change control removes the foundation from everything that sits on it.](finance-systems-architecture/diagrams/0678a3f6adc6e641.png)
+![A temple-like structure: entity-level controls and a foundation of four general IT control blocks support pillars for application controls, key reports and process controls, which hold up the financial statement assertions; an inset shows a cracked foundation tilting everything above.](finance-systems-architecture/posts/08-controls-and-auditability/assets/images/08-controls-and-auditability/control-reliance-chain.jpeg)
 
 **Figure 1:** *The reliance chain. Automated controls and system-generated reports are trusted only because the general IT controls beneath them operated all year; a failed access or change control removes the foundation from everything that sits on it.*
 
@@ -166,7 +166,7 @@ The rule Dana writes into the Keystone standard on segregation of duties by desi
 
 The most consequential change is to move payout rules out of code and configuration files into a **rule store**: configuration held as data, with a schema, validation, effective dates and an approval workflow. A rule change is proposed by a partner-settlement operations analyst (the maker), approved by a finance approver (the checker) who cannot be the maker, and becomes active only at its effective date. Engineers change the rule *engine* through the code pipeline; Finance changes the *rules* through the rule workflow. Neither can do the other's job, and each path has its own evidence.
 
-![The lifecycle of an SFP payout rule. Every transition is recorded with who, when and why; a rule cannot reach Active without passing an approval by someone other than its author, and a superseded version is kept, never overwritten.](finance-systems-architecture/diagrams/c369cc820d7142a2.png)
+![A payout rule moves from Draft to Submitted, is rejected or approved by a different person, becomes Active directly or via Scheduled, and is finally Superseded and archived rather than overwritten.](finance-systems-architecture/posts/08-controls-and-auditability/assets/images/08-controls-and-auditability/payout-rule-lifecycle.jpeg)
 
 **Figure 2:** *The lifecycle of an SFP payout rule. Every transition is recorded with who, when and why; a rule cannot reach Active without passing an approval by someone other than its author, and a superseded version is kept, never overwritten.*
 
@@ -184,7 +184,7 @@ A worked example shows why this matters. Take the Lisbon booking that this book 
 
 An €18 difference per booking is immaterial on its own. Applied by an unreviewed change to thousands of bookings for a quarter, it moves real revenue and real cash, and Finance would find out only when the margin analysis looked odd. That is why the auditor cared about nine undocumented changes even though the sampled payouts were correct: **an unapproved rule change is a revenue decision taken by someone without the authority to take it.**
 
-![A payout rule change at Northmere after remediation. The evidence is not collected afterwards; each step emits its own record, and each payout carries the version of the rule that produced it.](finance-systems-architecture/diagrams/f653a48497eb3066.png)
+![An analyst proposes a 12% override in the rule store, an approver approves it, the rule store publishes a rule version to the payout engine, and each step drops a sealed record into an evidence store below.](finance-systems-architecture/posts/08-controls-and-auditability/assets/images/08-controls-and-auditability/rule-change-evidence-trail.jpeg)
 
 **Figure 3:** *A payout rule change at Northmere after remediation. The evidence is not collected afterwards; each step emits its own record, and each payout carries the version of the rule that produced it.*
 
@@ -201,7 +201,7 @@ Every rule change, deployment, privileged session, approval and payout release w
 {id: controls-and-auditability--the-architecture-as-a-whole}
 ### The architecture as a whole
 
-![Remediation as architecture. Three change paths, for code, for rules and for emergencies, each enforce separation of duties and each feed one evidence store; the control register and the auditor read from that store instead of asking engineers.](finance-systems-architecture/diagrams/b9c161d91ae95957.png)
+![Three change paths, for code via repository and pipeline, rules via a rule store, and emergencies via break-glass, all reach SFP production; each path and production feed one evidence store, read by control monitoring and the auditor.](finance-systems-architecture/posts/08-controls-and-auditability/assets/images/08-controls-and-auditability/three-change-paths.jpeg)
 
 **Figure 4:** *Remediation as architecture. Three change paths, for code, for rules and for emergencies, each enforce separation of duties and each feed one evidence store; the control register and the auditor read from that store instead of asking engineers.*
 

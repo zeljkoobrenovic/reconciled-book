@@ -124,7 +124,7 @@ A cut-over at the start of a month falls inside the month-end blackout by defini
 
 Three architectures matter: the shadow stage, the transitional state with cohorts on both sides, and the end state. The first two are shown here and the third under decommissioning.
 
-![Stage 0. The engine consumes the same events as SFP but posts nothing; its would-be summaries are compared with SFP's real ones per entity and day. This is the Dark Launching pattern applied to a ledger: production inputs, no production effect.](finance-systems-architecture/diagrams/42300ccbd9568f92.png)
+![Product systems publish events onto a backbone; the SFP subledger posts to the general ledger and payouts while a ghostly accounting engine computes the same summaries that go only to a shadow comparison desk.](finance-systems-architecture/posts/33-incremental-modernization/assets/images/33-incremental-modernization/stage-zero-dark-launch.jpeg)
 
 **Figure 3:** *Stage 0. The engine consumes the same events as SFP but posts nothing; its would-be summaries are compared with SFP's real ones per entity and day. This is the Dark Launching pattern applied to a ledger: production inputs, no production effect.*
 
@@ -138,7 +138,7 @@ Five transitional components were built for the cut-over stages. [Changing the E
 | **Partner balance read model** | Legacy mimic | Serves the extranet "current balance" and statements from SFP or the engine per entity, so partners see no change | Stayloft product engineering | Last cohort cut over |
 | **Legacy control account** | Transitional architecture | A separate CoA v2 account, "Partner payables – merchant, legacy SFP", so SFP-fed and engine-fed balances are reconciled separately | Group reporting | Balance zero after the last cohort; blocked after the FY2029 audit |
 
-![The transitional state during 2029. The cohort register gives every entity exactly one book of record. Moved cohorts are recomputed by SFP as a reverse shadow so the new book can be proven and, until the point of no return, handed back. Partners and the payout service read through paths that hide which book is authoritative.](finance-systems-architecture/diagrams/7585566e9253dba3.png)
+![A cohort register switch routing events either to the SFP subledger or to the new engine, each crowned as book of record for its cohorts, with a reverse-shadow ghost book tied out against the new engine and both books feeding one read model for partners.](finance-systems-architecture/posts/33-incremental-modernization/assets/images/33-incremental-modernization/cohort-register-switch.jpeg)
 
 **Figure 4:** *The transitional state during 2029. The cohort register gives every entity exactly one book of record. Moved cohorts are recomputed by SFP as a reverse shadow so the new book can be proven and, until the point of no return, handed back. Partners and the payout service read through paths that hide which book is authoritative.*
 
@@ -149,7 +149,7 @@ Two rules governed these components. **The cohort register is financially signif
 
 Each cohort follows the same lifecycle, and every transition is a gate.
 
-![The lifecycle of one cohort. Rollback paths exist until the first close on the new book is signed; after that, problems are fixed forward. Retirement needs its own gate, because a system that is no longer authoritative may still be needed for history.](finance-systems-architecture/diagrams/3420c5508452fd3f.png)
+![Six stepping stones from SFP book through Shadow, Cut-over day, Dual run and Engine only to Retired, separated by gates G0 to G3, with rollback arrows back to Shadow that end at the first signed close.](finance-systems-architecture/posts/33-incremental-modernization/assets/images/33-incremental-modernization/cohort-lifecycle-path.jpeg)
 
 **Figure 5:** *The lifecycle of one cohort. Rollback paths exist until the first close on the new book is signed; after that, problems are fixed forward. Retirement needs its own gate, because a system that is no longer authoritative may still be needed for history.*
 
@@ -294,7 +294,7 @@ Two details in the runbook came from stage 1. The delta load exists because Octo
 4. **August 2030:** all human and service access to SFP subledger stores removed, after a full close cycle with no reads.
 5. **October 2030:** databases deleted, summarization and posting code removed, the custom posting path in S/4HANA deleted, the legacy control account blocked after the FY2029 audit. The scaffolding register rows for this migration were closed.
 
-![The migration on one page. The cut-overs are two days; most of the timeline is proving before them and dual running and decommissioning after them. Every bar ends at a gate, not at a planned date.](finance-systems-architecture/diagrams/665b27b3438b48c6.png)
+![A four-lane timeline from 2028 to 2030: a long shadow run, two short cut-over days for UK and INTL and for EEA each followed by reverse shadow bars, and archive drills ending with SFP's deletion, every bar ending at a gate.](finance-systems-architecture/posts/33-incremental-modernization/assets/images/33-incremental-modernization/migration-on-one-page.jpeg)
 
 **Figure 6:** *The migration on one page. The cut-overs are two days; most of the timeline is proving before them and dual running and decommissioning after them. Every bar ends at a gate, not at a planned date.*
 

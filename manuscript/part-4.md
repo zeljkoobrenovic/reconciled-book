@@ -23,7 +23,7 @@ The chapters move from how decisions are made, through how the journey is planne
 {id: part-4--the-learning-path}
 ## The Learning Path
 
-![Eleven chapters in four stages: how decisions are made and enforced, how the journey is planned and delivered, how the estate is kept measurable and recoverable, and how ownership, AI and long-term change are kept inside the architecture.](finance-systems-architecture/diagrams/99f1b8fdf8f9de3e.png)
+![Four milestones: decide well, plan the journey, keep the estate healthy and look ahead, ending at a compass for a coherent estate.](finance-systems-architecture/posts/part-4-intro/assets/images/part-4-intro/part-4-four-stages.jpeg)
 
 **Figure 1:** *Eleven chapters in four stages: how decisions are made and enforced, how the journey is planned and delivered, how the estate is kept measurable and recoverable, and how ownership, AI and long-term change are kept inside the architecture.*
 

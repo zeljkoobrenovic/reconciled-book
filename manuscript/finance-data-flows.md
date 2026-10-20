@@ -128,7 +128,7 @@ A vendor platform knows its own ERP's semantics deeply and the rest of the estat
 
 FinDB's target architecture, agreed in June 2027, has five stages. The layering uses the **medallion** convention that Databricks defines: a **bronze** layer of raw source data with load metadata, a **silver** layer that is matched, conformed and cleansed into an enterprise view, and a **gold** layer of consumption-ready datasets ([Databricks glossary](https://www.databricks.com/glossary/medallion-architecture)). Medallion is a data-engineering convention, not a control framework; the controls in the figure are what make it fit for finance.
 
-![FinDB's target architecture. Every source lands immutably in bronze; silver conforms journals, lines and events to the group dimensions; gold datasets are certified only for periods whose tie-out to the ledger has passed; and consumers with certified uses read through the governed metrics layer, never from raw tables.](finance-systems-architecture/diagrams/068b48486b8fe687.png)
+![Sources flow through ingestion into bronze raw storage, are conformed in silver, pass a ledger tie-out gate into certified gold, and reach consumers only through the governed metrics layer.](finance-systems-architecture/posts/26-finance-data-flows/assets/images/26-finance-data-flows/findb-target-architecture.jpeg)
 
 **Figure 2:** *FinDB's target architecture. Every source lands immutably in bronze; silver conforms journals, lines and events to the group dimensions; gold datasets are certified only for periods whose tie-out to the ledger has passed; and consumers with certified uses read through the governed metrics layer, never from raw tables.*
 
@@ -232,7 +232,7 @@ The tie-out Owen's team built between July and October 2027 works as follows:
 - **Breaks**: each break is a record with entity, account, amount, age, a cause category and an owner. Causes are routed: replication failures to Owen's team; mapping-version mismatches to group reporting; posting gaps to the source system owner (Jonas for SFP, Hana Kowalski for Wayfare, Arjun Rao for Tablekin, Sven Aalto for S/4HANA); late manual journals to the entity's accountant. Breaks age like reconciliation items, and those older than two days are reported to Leila's close review.
 - **Certification**: a gold financial dataset is certified for a period only when the tie-out for every entity and account it draws on has passed. The certification state is a column consumers can read, not a status in someone's email.
 
-![The daily ledger-to-warehouse tie-out. FinDB never corrects a difference by adjusting its own copy; the break goes to the owner of the source, and certification follows only from agreement.](finance-systems-architecture/diagrams/710b6796fc190d59.png)
+![Ledger balances and FinDB balances meet at a tie-out scale; agreement leads to certification, while a difference goes to the source owner, who fixes it at the source.](finance-systems-architecture/posts/26-finance-data-flows/assets/images/26-finance-data-flows/daily-tie-out.jpeg)
 
 **Figure 3:** *The daily ledger-to-warehouse tie-out. FinDB never corrects a difference by adjusting its own copy; the break goes to the owner of the source, and certification follows only from agreement.*
 
@@ -256,7 +256,7 @@ Finance data arrives at different speeds, and each speed has a different authori
 | **Closed** | Working day 9, after OneStream lock | Board pack, earnings, IR model, plan actuals | `CLOSED` | The reported number |
 | **Restated** | When a prior-period adjustment is recorded | Comparatives after a correction | `RESTATED` with reference | Supersedes the closed number for that period |
 
-![A number's status moves in one direction with the close. Consumers read the status with the value; a closed number changes only through a recorded restatement, never through a pipeline rerun.](finance-systems-architecture/diagrams/96a44beb1bd62fd1.png)
+![Status stones from Operational through Preliminary and Flash to a padlocked Closed, with a bypass from Preliminary to Closed and a recorded Restated loop as the only way to change a closed number.](finance-systems-architecture/posts/26-finance-data-flows/assets/images/26-finance-data-flows/number-status-one-way.jpeg)
 
 **Figure 4:** *A number's status moves in one direction with the close. Consumers read the status with the value; a closed number changes only through a recorded restatement, never through a pipeline rerun.*
 
@@ -271,7 +271,7 @@ A closed number must be **reproducible**: rerunning the pipeline later must retu
 
 **Lineage** is the recorded path from a source to a published number. [Finance Data Architecture: Who Owns the Truth](#finance-data-architecture) distinguishes its two strands: the data strand (which records) and the rule strand (which mapping, rate set and rule versions). In the data platform, lineage has a practical test: **can an auditor, starting from the Net revenue tile in the board pack, reach the subledger lines and the journal entries behind it, and can an analyst, starting from a booking, see which reported number it reached?**
 
-![End-to-end lineage for one reported number. The Lisbon booking's €90 commission reaches the Q2 2027 board pack through the stay-completion event, the subledger line, its summary key, the daily journal, the trial balance and the locked consolidation; the metric version and the tie-out record make the path auditable.](finance-systems-architecture/diagrams/492fad3195fae239.png)
+![A chain from the StayCompleted event through the subledger line, summary_id key, daily journal, trial balance and locked consolidation to the board pack showing €90, with a metric version tag and a zero-difference tie-out record.](finance-systems-architecture/posts/26-finance-data-flows/assets/images/26-finance-data-flows/lineage-of-one-number.jpeg)
 
 **Figure 5:** *End-to-end lineage for one reported number. The Lisbon booking's €90 commission reaches the Q2 2027 board pack through the stay-completion event, the subledger line, its summary key, the daily journal, the trial balance and the locked consolidation; the metric version and the tie-out record make the path auditable.*
 

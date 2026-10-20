@@ -82,7 +82,7 @@ The rule I use is P7 in [Principles That Decide Things](#principles-standards-re
 | 8 | **Consolidation mapping** | OneStream entity member, ownership and consolidation method, translation rules, mapping set for a non-group chart, intercompany pairs | OneStream | Group reporting | Significant (mapping); structural (ownership) | Two to six weeks |
 | 9 | **Controls scoping** | Risk and control matrix instances for the entity and its flows, SOX scoping decision, entity-level controls, sub-certification | Risk and control matrix | Mei Tanaka's internal controls team | Significant | One quarter before the first relevant year-end |
 
-![The nine configuration layers form a dependency graph rooted in the entity register. Nothing downstream can be configured for an entity the register does not know, and nothing goes live until the posting simulation, the settlement matching profile and the controls scoping have converged on the same gate.](finance-systems-architecture/diagrams/fad1df8dde711833.png)
+![Three lanes starting from the entity register: dimensions and posting rules to posting simulation, PSP and bank accounts to the matching profile, close calendar and consolidation to controls scoping, all converging on one go-live gate.](finance-systems-architecture/posts/32-brands-entities-markets/assets/images/32-brands-entities-markets/configuration-layers-converge.jpeg)
 
 **Figure 2:** *The nine configuration layers form a dependency graph rooted in the entity register. Nothing downstream can be configured for an entity the register does not know, and nothing goes live until the posting simulation, the settlement matching profile and the controls scoping have converged on the same gate.*
 
@@ -198,7 +198,7 @@ Here is the Brazil kit as the design authority approved it on **14 December 2027
 | Controls scoping and risk and control matrix instances | Mei Tanaka | 1 quarter before the first year-end in scope | All above | Brazil will be immaterial at launch; scoping decides which group-level controls cover it |
 | Ledger-ready test: settlement data from Adyen and the APM provider matches automatically at the agreed rate | Northmere Pay, Leila's team | 4 weeks of testing | Providers, BlackLine | Keystone's "ledger-ready before launch" criterion ([Payments for Finance Architects: Eleven Reasons the Numbers Disagree](#payments-fundamentals)) |
 
-![The Brazil critical path runs through incorporation, banking and providers. The software configuration fits in a few weeks inside that path, which is why the kit starts the slow items on the day of the decision.](finance-systems-architecture/diagrams/4983d86b2c3f5c04.png)
+![A timeline from 14 December 2027 to 1 July 2028 in which incorporation, banking, providers and a settlement test form the long critical chain, regulatory and tax work run alongside, and software configuration is a short six-week bar.](finance-systems-architecture/posts/32-brands-entities-markets/assets/images/32-brands-entities-markets/brazil-critical-path.jpeg)
 
 **Figure 3:** *The Brazil critical path runs through incorporation, banking and providers. The software configuration fits in a few weeks inside that path, which is why the kit starts the slow items on the day of the decision.*
 
@@ -235,7 +235,7 @@ An acquisition differs from a market launch in one respect that changes everythi
 
 The generalized domain model behind this book puts the response in one phrase: **consolidate from day one, stream canonical events, retire legacy on a dated plan**. Northmere's playbook splits that into three horizons.
 
-![The acquired-brand timeline separates three questions that are often merged: when the group can report the brand (day 1), when the group can rely on its data and controls (day 100), and whether the brand's systems should be replaced (a later decision on evidence).](finance-systems-architecture/diagrams/0e36565c8bb077c6.png)
+![A timeline from deal close on 1 September 2027 to Day 1 (report), Day 30, Day 100 on 9 December 2027 (rely), FY2028 and a later decision on whether to replace the brand's systems.](finance-systems-architecture/posts/32-brands-entities-markets/assets/images/32-brands-entities-markets/acquired-brand-timeline.jpeg)
 
 **Figure 5:** *The acquired-brand timeline separates three questions that are often merged: when the group can report the brand (day 1), when the group can rely on its data and controls (day 100), and whether the brand's systems should be replaced (a later decision on evidence).*
 

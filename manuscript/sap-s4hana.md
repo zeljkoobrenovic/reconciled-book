@@ -84,7 +84,7 @@ The **Universal Journal** is S/4HANA's single line-item store for accounting. Ea
 
 Practitioners commonly describe two further changes, documented in SAP Notes 2428741 and 2842890 for each release: **cost elements are general-ledger accounts**, so the separate cost-element master and the FI–CO reconciliation ledger of ECC are gone and allocations are themselves journal entries; and **margin analysis**, account-based profitability analysis, is SAP's direction, with the costing-based variant still available on-premise and in Private Edition but not where SAP invests.
 
-![Inside SAP, every module writes to one journal, so legal and management views read the same lines. Feeds from outside SAP arrive as summaries, and the journal is only as detailed as what they deliver.](finance-systems-architecture/diagrams/0e2ea8c46f8fd58a.png)
+![Sales, procurement, asset and allocation modules inside SAP write detailed lines into one Universal Journal, while external feeds arrive as a single summary block; legal and management reporting both read the same lines.](finance-systems-architecture/posts/15-sap-s4hana/assets/images/15-sap-s4hana/universal-journal-hub.jpeg)
 
 **Figure 1:** *Inside SAP, every module writes to one journal, so legal and management views read the same lines. Feeds from outside SAP arrive as summaries, and the journal is only as detailed as what they deliver.*
 
@@ -174,7 +174,7 @@ The architecturally important property is **how it posts to the general ledger**
 
 Since 2025 Stayloft's agency business runs through FI-CA. SFP's commission billing rates commission per completed stay and sends **billable items** to Convergent Invoicing; at month-end Convergent Invoicing produces each property's commission invoice, Vertex determines VAT, and FI-CA holds the invoice as an open item, runs dunning and clears payments.
 
-![FI-CA keeps partner accounts as open items and posts only totals to the ledger, each traceable through its reconciliation key. Commission rating stays in SFP; invoicing, receivables and collection run in SAP.](finance-systems-architecture/diagrams/ae8cef57b8d81e54.png)
+![Commission rating stays in SFP; invoicing and FI-CA open items run in SAP, with bank payments arriving there; FI-CA posts only totals tagged by reconciliation key to the general ledger, and a subledger-to-GL proof weighs the two.](finance-systems-architecture/posts/15-sap-s4hana/assets/images/15-sap-s4hana/fica-totals-to-ledger.jpeg)
 
 **Figure 3:** *FI-CA keeps partner accounts as open items and posts only totals to the ledger, each traceable through its reconciliation key. Commission rating stays in SFP; invoicing, receivables and collection run in SAP.*
 
@@ -229,7 +229,7 @@ Central Finance is good at **harmonizing the general ledger over a heterogeneous
 
 **Option B, an accounting hub.** Brand platforms publish Keystone's canonical financial events (`StayCompleted`, `PaymentSettled`, `PartnerPayoutSettled` and the rest). A group accounting engine applies posting rules owned by Leila's team, keeps event-level detail and posts summarized journals with drill-back keys into the Universal Journal through released APIs, or into FI-CA where the work is receivables-shaped. Brand ERPs shrink toward whatever local operations remain.
 
-![Central Finance centralizes accounting documents that brand ledgers have already produced; an accounting hub centralizes the posting logic itself and feeds S/4HANA from events. Both end in the same journal; they differ in where accounting decisions are made.](finance-systems-architecture/diagrams/c34e207f5fbf9a6d.png)
+![Two routes into one Universal Journal: in Central Finance, brand ledgers make the accounting decisions and send finished documents through mapping; in an accounting hub, brand platforms send events to a group accounting engine that makes the decisions.](finance-systems-architecture/posts/15-sap-s4hana/assets/images/15-sap-s4hana/central-finance-vs-hub.jpeg)
 
 **Figure 4:** *Central Finance centralizes accounting documents that brand ledgers have already produced; an accounting hub centralizes the posting logic itself and feeds S/4HANA from events. Both end in the same journal; they differ in where accounting decisions are made.*
 

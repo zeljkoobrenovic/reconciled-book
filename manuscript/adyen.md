@@ -100,7 +100,7 @@ The test is simple: if two flows would be posted to different clearing accounts,
 
 Northmere Pay contracts with Adyen through its two licensed entities. Stayloft's **agency** bookings never reach Adyen, because the property collects the traveler's payment; only **merchant**-model bookings, where Stayloft collects, holds the funds until after the stay and pays the property net of commission, flow through Northmere Pay. So Dana's team designed the structure around Northmere Pay's entities, not around Stayloft:
 
-![Northmere's illustrative Adyen structure: merchant accounts follow the contracting entity, the regulatory perimeter and the payout currency; brand is an account group and business model is a field. Every merchant account and currency gets its own clearing account, so each batch has exactly one place to land.](finance-systems-architecture/diagrams/29af9abd682b5b67.png)
+![A tree from the Northmere Group company account to the Stayloft account group and three merchant accounts, EEA, INTL and UK; EEA and INTL pay out to the B.V. safeguarding vault and UK to the UK vault, and each merchant account has its own clearing book.](finance-systems-architecture/posts/21-adyen/assets/images/21-adyen/merchant-accounts-by-entity.jpeg)
 
 **Figure 2:** *Northmere's illustrative Adyen structure: merchant accounts follow the contracting entity, the regulatory perimeter and the payout currency; brand is an account group and business model is a field. Every merchant account and currency gets its own clearing account, so each batch has exactly one place to land.*
 
@@ -145,7 +145,7 @@ The Lisbon payment is a single card payment with immediate capture: the stay is 
 
 Adyen's modifications are asynchronous. A capture request returns `received`, and the outcome arrives later by webhook with event code `CAPTURE` and a `success` flag ([Adyen: Capture](https://docs.adyen.com/online-payments/capture)). The same pattern applies to refunds and cancellations. A partial capture cancels the uncaptured remainder automatically, and multiple partial captures are disabled by default. The architectural rule follows directly: **an API response is an acknowledgment, not a state**. Northmere Pay records the request as pending and moves the payment's state only when the webhook arrives.
 
-![The Lisbon payment through Adyen: the API response gives identity, webhooks give operational state, and the settlement report gives money. Each step produces a Keystone canonical event; the settlement events are derived from the report, not from webhooks.](finance-systems-architecture/diagrams/3af78951705c1c0d.png)
+![A traveler pays through Northmere Pay to Adyen; three returns come back: the API response gives identity, webhooks give state and the settlement report gives money, and Northmere Pay turns them into canonical events on a conveyor into the SFP subledger.](finance-systems-architecture/posts/21-adyen/assets/images/21-adyen/lisbon-payment-three-channels.jpeg)
 
 **Figure 3:** *The Lisbon payment through Adyen: the API response gives identity, webhooks give operational state, and the settlement report gives money. Each step produces a Keystone canonical event; the settlement events are derived from the report, not from webhooks.*
 
@@ -180,7 +180,7 @@ Northmere Pay's webhook receiver does four things and nothing else: it verifies 
 
 The 30-day retry window is a resilience feature and an accounting hazard. A receiver outage over a month-end means webhooks for the last days of the month arrive in the next period. The consumer stamps each canonical event with both `occurred_at` (Adyen's event time) and `recorded_at` (receipt), and the period cut-off rule, owned by Leila's team, uses `occurred_at` in the merchant account's report time zone. That rule needs stating, because Adyen's reports follow the account's time-zone setting while its invoices are based on Central European Time ([Payment accounting report](https://docs.adyen.com/reporting/invoice-reconciliation/payment-accounting-report)).
 
-![Two Adyen feeds, two jobs. Webhooks carry operational state through an idempotent consumer; reports carry money and fees. Both become canonical events, and BlackLine matches the three legs: subledger, report and bank.](finance-systems-architecture/diagrams/6f49d08adc62185e.png)
+![Adyen webhooks pass a receiver and an idempotent consumer, and Adyen reports pass a report loader; both become canonical events feeding the SFP subledger, and BlackLine matches SFP, the report and the bank.](finance-systems-architecture/posts/21-adyen/assets/images/21-adyen/two-adyen-feeds.jpeg)
 
 **Figure 4:** *Two Adyen feeds, two jobs. Webhooks carry operational state through an idempotent consumer; reports carry money and fees. Both become canonical events, and BlackLine matches the three legs: subledger, report and bank.*
 

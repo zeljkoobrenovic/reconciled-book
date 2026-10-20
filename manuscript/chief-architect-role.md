@@ -95,7 +95,7 @@ Dana's catalog, as she drafted it in her second month, had six services.
 5. **Design authority for transformation.** For Keystone, a standing forum that rules on design questions with the authority of the program sponsor. Dana chairs it with Leila Haddad, the Chief Accounting Officer ([The Technology Is the Easy Part: Leading a Finance Transformation](#finance-transformation) owns the term).
 6. **Embedded architecture.** Solution and integration architects who work inside brand and platform teams on their hardest problems. This is the service that earns the trust the other five spend.
 
-![The architecture function as a set of services with named customers. Each arrow is something a customer would notice if it stopped. A document set has readers; a function has customers who can complain.](finance-systems-architecture/diagrams/569a5558035fae33.png)
+![Six architecture services on the left — portfolio facts, target state, decisions, embedded architects, standards, design authority — each delivering along a straight arrow to a named customer on the right: CFO, controller, payments, brand finance, internal controls and Keystone.](finance-systems-architecture/posts/01-chief-architect-role/assets/images/01-chief-architect-role/function-services-and-customers.jpeg)
 
 **Figure 1:** *The architecture function as a set of services with named customers. Each arrow is something a customer would notice if it stopped. A document set has readers; a function has customers who can complain.*
 
@@ -176,7 +176,7 @@ Three properties make a decision-rights table like this one work.
 
 Decisions are also routed by **materiality**, so that most never reach a forum.
 
-![Decisions route by materiality, and most never reach a forum. Every path converges on the same control gate for systems in ICFR scope: advice can replace approval for design, never for change evidence.](finance-systems-architecture/diagrams/d6ebabe13c7279a4.png)
+![A decision enters at the top and routes into four lanes — team, advisory forum, architecture review, design authority — with most traffic on the team lane; all lanes converge on an ICFR-scope check that leads either to a control gate with evidence or straight on.](finance-systems-architecture/posts/01-chief-architect-role/assets/images/01-chief-architect-role/decision-routing-by-materiality.jpeg)
 
 **Figure 3:** *Decisions route by materiality, and most never reach a forum. Every path converges on the same control gate for systems in ICFR scope: advice can replace approval for design, never for change evidence.*
 
@@ -208,7 +208,7 @@ Gregor Hohpe's image for the architect's position is an elevator. The architect 
 
 In finance, the penthouse speaks of days to close and audit findings, the engine room of summarization levels and settlement file formats. Between them sits a floor technology-side architects underrate: the controller's floor, where accounting policy, close calendars and reconciliations live. Dana answered Tomás's first question by riding all the way down and back up.
 
-![The elevator ride behind the CFO's first question. The question arrives in the penthouse in days; the causes are found in the engine room as missing keys and missing coverage; the answer goes back up as options priced in days, money and control risk.](finance-systems-architecture/diagrams/fbb63f193d4eda97.png)
+![A three-floor building: the CFO's question about nine close days in the penthouse, lost days on the controller's calendar, root causes in the engine room, and three costed options carried back up to the penthouse.](finance-systems-architecture/posts/01-chief-architect-role/assets/images/01-chief-architect-role/elevator-ride-close-question.jpeg)
 
 **Figure 4:** *The elevator ride behind the CFO's first question. The question arrives in the penthouse in days; the causes are found in the engine room as missing keys and missing coverage; the answer goes back up as options priced in days, money and control risk.*
 

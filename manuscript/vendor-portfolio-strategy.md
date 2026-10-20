@@ -50,7 +50,7 @@ Procurement negotiates price and terms. Architecture decides what the enterprise
 
 **Ownership decides incentives.** Finance software changes hands often. Thoma Bravo took Coupa private in [February 2023](https://www.thomabravo.com/press-releases/thoma-bravo-completes-acquisition-of-coupa-software); Silver Lake and GIC took Zuora private in [February 2025](https://www.zuora.com/press-release/silver-lake-gic-zuora); Hg took OneStream private in April 2026. A new owner is not a bad owner. It does bring a new investment thesis, and Forrester's [analysis of the OneStream deal](https://www.forrester.com/blogs/onestream-goes-private-three-strategic-imperatives-for-tech-leaders/) is typical in expecting tighter pricing and sharper product focus and in advising customers to secure roadmap and support commitments before renewal.
 
-![The Borrowed Roadmap is a loop: vendor decisions shape architecture, dependencies reduce negotiating power, and weaker negotiating power lets the vendor's next decision land unopposed. An enterprise-owned target state and a vendor strategy break the loop by filtering choices and preparing renewals in advance.](finance-systems-architecture/diagrams/672670cfd093c81c.png)
+![A clockwise orange loop from vendor decisions to architecture choices, dependencies and falling negotiating power, labeled the Borrowed Roadmap, with an enterprise target state and vendor strategy filtering choices and preparing renewals that restore negotiating power.](finance-systems-architecture/posts/37-vendor-portfolio-strategy/assets/images/37-vendor-portfolio-strategy/borrowed-roadmap-loop.jpeg)
 
 **Figure 1:** *The Borrowed Roadmap is a loop: vendor decisions shape architecture, dependencies reduce negotiating power, and weaker negotiating power lets the vendor's next decision land unopposed. An enterprise-owned target state and a vendor strategy break the loop by filtering choices and preparing renewals in advance.*
 
@@ -114,7 +114,7 @@ For Northmere Payments B.V., this is law. DORA, the EU Digital Operational Resil
 
 For the rest of the group DORA does not apply, but its logic is sound, and I recommend applying it to every strategic vendor. Exit plans mature in four stages, and the tier decides which stage is required.
 
-![Exit maturity. A plan drops back from Tested to Estimated whenever scope or contract changes enough to invalidate the last test; tier and regulation decide the required stage.](finance-systems-architecture/diagrams/e1415c2a2b1fb4df.png)
+![A staircase of exit-plan maturity from Named to Documented, Estimated and Tested, with an annual re-test loop on Tested and an arrow dropping back to Estimated when contract or scope changes.](finance-systems-architecture/posts/37-vendor-portfolio-strategy/assets/images/37-vendor-portfolio-strategy/exit-plan-maturity.jpeg)
 
 **Figure 3:** *Exit maturity. A plan drops back from Tested to Estimated whenever scope or contract changes enough to invalidate the last test; tier and regulation decide the required stage.*
 
@@ -180,7 +180,7 @@ An **anti-corruption layer** is a boundary component that translates a vendor's 
 
 I use three tests. An abstraction pays when (1) **a change of vendor at that seam is plausible within the planning horizon** because of concentration, price, ownership or regulation; (2) **several consumers would otherwise depend on the vendor's format**, so the abstraction removes many dependencies at once; and (3) **the enterprise's concept at the seam is stable and well understood**, so the abstraction does not have to chase the vendor's features. If all three hold, build it. If none hold, it is waste.
 
-![Where Northmere abstracts. Seams with plausible vendor change and many consumers (payments, tax, e-invoicing, events) get an enterprise-owned boundary; the general ledger is used directly, and bank connectivity relies on a standard format rather than a custom layer.](finance-systems-architecture/diagrams/439a9c39caf6b244.png)
+![Brand platforms reach payment providers, the tax engine and finance tools through enterprise-owned adapters and an event backbone; the general ledger is used directly, feeding consolidation, an e-invoicing gateway and treasury via a standard ISO 20022 file.](finance-systems-architecture/posts/37-vendor-portfolio-strategy/assets/images/37-vendor-portfolio-strategy/where-northmere-abstracts.jpeg)
 
 **Figure 5:** *Where Northmere abstracts. Seams with plausible vendor change and many consumers (payments, tax, e-invoicing, events) get an enterprise-owned boundary; the general ledger is used directly, and bank connectivity relies on a standard format rather than a custom layer.*
 

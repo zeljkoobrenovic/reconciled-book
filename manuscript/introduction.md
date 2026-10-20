@@ -107,7 +107,7 @@ The book opens with three preface pages, continues with four parts that form a l
 | **[PRACTICE: How Others Built It](#part-5)** | What do publicly documented platforms teach about these patterns, and where does the public evidence stop? | 44: [Uber's Payments Platform: A Ledger at the Center of Money Movement](#case-uber-payments) |
 | **Reference** | Where are the templates, definitions and sources? | [Working Papers: Templates for the Finance Architect](#toolkit), [Glossary](#glossary), [Bibliography](#bibliography) |
 
-![The four parts move from concepts to platforms, from platforms to the estate as one system, and from the estate to leading it over time; the case studies test the patterns against public evidence, and the reference pages serve every part.](finance-systems-architecture/diagrams/5d196d434a32dfb9.png)
+![A road from the preface through Parts I to V, with dashed links from Parts I, III and IV to a toolkit bookshelf of templates and references.](finance-systems-architecture/posts/introduction/assets/images/introduction/book-route-map.jpeg)
 
 **Figure 3:** *The four parts move from concepts to platforms, from platforms to the estate as one system, and from the estate to leading it over time; the case studies test the patterns against public evidence, and the reference pages serve every part.*
 

@@ -111,7 +111,7 @@ Four rules make the contract work, and I recommend writing them into the mandato
 3. **Mappings are retained as long as the records that depend on them.** The batch map that expired after 13 months in [Unreconciled: Fourteen Ways Finance Architecture Goes Wrong](#where-finance-architecture-goes-wrong) broke this rule; writing the `summary_id` onto the line itself ([Never Update, Only Append: Designing Custom Ledgers](#designing-financial-ledgers)) leaves no separate map to expire.
 4. **Many-to-one hops keep the "many".** Where a provider or bank aggregates, the receiver records the expected members of the aggregate so a later reconciliation can prove it.
 
-![The identifier propagation chain for the Lisbon booking. Every arrow is a hop where a key is handed over and the pair is stored on the receiving side. The trace from the revenue note to the booking, and back, is a walk along these arrows. If any arrow loses its key, the walk stops there.](finance-systems-architecture/diagrams/c591e58e74465897.png)
+![A booking's keys flow along two tracks: through events, the SFP journal, S/4HANA, OneStream and Workiva, and through Northmere Pay, Adyen and the bank, with BlackLine matching between them; a key icon sits on every arrow.](finance-systems-architecture/posts/31-traceability-and-reconciliation/assets/images/31-traceability-and-reconciliation/identifier-chain.jpeg)
 
 **Figure 1:** *The identifier propagation chain for the Lisbon booking. Every arrow is a hop where a key is handed over and the pair is stored on the receiving side. The trace from the revenue note to the booking, and back, is a walk along these arrows. If any arrow loses its key, the walk stops there.*
 
@@ -182,7 +182,7 @@ A **reconciliation catalog** is the register of every recurring comparison the e
 
 Three design rules sit behind the table. **Each entry compares independent sources**: for R2, S/4HANA's record of what it *posted*, not SFP's record of what it *sent*; for R9, the locked trial balance, not a FinDB table built from the same SFP feed. The test: **if side A were wrong, would side B be wrong in the same way?** If yes, it is not a reconciliation. **Each entry records two owners**, one who clears breaks and one who owns their cause, so breaks do not sit with people who can only clear them. **Each entry names where its result goes**: R1–R3 support BlackLine account reconciliations, R2 and R6 feed the close gate, R7 feeds OneStream's workflow, R9 sets FinDB's certification flag. A reconciliation whose result goes nowhere is a report, not a control.
 
-![Reconciliation points across Northmere's landscape. Every edge is a boundary with a catalog entry. The figure also shows what is missing: in the 2027 baseline, R9 was not run at all, and R6 between S/4HANA and Fusion was reconciled inside Fusion against Wayfare's own copy of the S/4HANA balance.](finance-systems-architecture/diagrams/14b39bfc3db29883.png)
+![System boundaries across Northmere's landscape marked with reconciliation checkpoints R1 to R9, from platforms and providers through the SFP subledger and banks into S/4HANA, Fusion, Workday, OneStream and Workiva; the R9 tie-outs to FinDB are faded and dashed, and the R6 check with Fusion carries a warning.](finance-systems-architecture/posts/31-traceability-and-reconciliation/assets/images/31-traceability-and-reconciliation/reconciliation-points.jpeg)
 
 **Figure 2:** *Reconciliation points across Northmere's landscape. Every edge is a boundary with a catalog entry. The figure also shows what is missing: in the 2027 baseline, R9 was not run at all, and R6 between S/4HANA and Fusion was reconciled inside Fusion against Wayfare's own copy of the S/4HANA balance.*
 
@@ -277,7 +277,7 @@ The auditor selects the Stayloft merchant commission line in the year-to-date re
 
 The auditor names booking `SL-BK-9921347`. The trace service lists every event with that `correlation_id`, and from each event follows the keys upward.
 
-![The bottom-up trace as a product. The trace service holds no data of its own. It walks the stored keys and attaches the evidence record of each reconciliation the item passed through. That second half is what turns a lookup into audit evidence.](finance-systems-architecture/diagrams/c9f9f170e740c918.png)
+![An auditor asks an empty trace service, which walks stored keys across SFP, S/4HANA, Northmere Pay and OneStream and returns a chain of keys with sealed evidence records attached.](finance-systems-architecture/posts/31-traceability-and-reconciliation/assets/images/31-traceability-and-reconciliation/trace-service-walk.jpeg)
 
 **Figure 5:** *The bottom-up trace as a product. The trace service holds no data of its own. It walks the stored keys and attaches the evidence record of each reconciliation the item passed through. That second half is what turns a lookup into audit evidence.*
 

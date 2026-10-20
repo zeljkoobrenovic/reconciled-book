@@ -23,7 +23,7 @@ The chapters first follow the money end to end, then decide who owns what, then 
 {id: part-3--the-learning-path}
 ## The Learning Path
 
-![Ten chapters in four stages: trace money and data end to end, decide which system is authoritative for what, design the events and reconciliations that join the platforms, and use that design to onboard and migrate without breaking the close.](finance-systems-architecture/diagrams/2928138af9295293.png)
+![Four stages joined by arrows: follow the money, decide authority, design the seams and grow and change, ending at one provable system.](finance-systems-architecture/posts/part-3-intro/assets/images/part-3-intro/part-3-four-stages.jpeg)
 
 **Figure 1:** *Ten chapters in four stages: trace money and data end to end, decide which system is authoritative for what, design the events and reconciliations that join the platforms, and use that design to onboard and migrate without breaking the close.*
 

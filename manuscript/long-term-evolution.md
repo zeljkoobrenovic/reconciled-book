@@ -66,7 +66,7 @@ Against all this, some things must not change, or must change only by a delibera
 
 **The right-hand column's lifetime is set by law and by the books, not by contracts.** German law, for example, requires books and annual financial statements to be kept for ten years ([Haufe, on the 2025 changes](https://www.haufe.de/steuern/gesetzgebung-politik/viertes-buerokratieentlastungsgesetz_168_613390.html)); under such a rule, a Wayfare ledger from 2021 has to remain readable until the end of 2031 ([Changing the Engine in Flight: Modernization Patterns for Finance](#modernization-patterns)). An architecture that keeps the right-hand column in vendor-specific form has tied a ten-year obligation to a three-year contract.
 
-![The decade view of a finance estate. Products, providers and actors on the left change on external timetables; they connect to a small durable core the enterprise owns. Long-term architecture is mostly about keeping that core in the enterprise's own form.](finance-systems-architecture/diagrams/f7611eee0689bb87.png)
+![On the left, drifting boxes for ERP products, PSPs and banks, tax engines, brands and markets, and people and agents; on the right, a stone keep holding owned identifiers, canonical events, books of record and an evidence store; the volatile parts connect into the core, and events derive the books, which are proved with evidence.](finance-systems-architecture/posts/43-long-term-evolution/assets/images/43-long-term-evolution/volatile-edge-durable-core.jpeg)
 
 **Figure 1:** *The decade view of a finance estate. Products, providers and actors on the left change on external timetables; they connect to a small durable core the enterprise owns. Long-term architecture is mostly about keeping that core in the enterprise's own form.*
 
@@ -109,7 +109,7 @@ A carve-out of Wayfare may be unlikely. It is still worth simulating, because wh
 
 Two other long-horizon tools sit beside it. A **Wardley map** places components on a value chain against their evolution from genesis to commodity ([Learn Wardley Mapping](https://learnwardleymapping.com/)); it shows what will commoditize within the decade, such as Northmere's custom payout orchestration, and when the retirement test of [When the ERP Isn't Enough: Custom Finance Platforms](#custom-finance-platforms) should be run again. **Evolutionary architecture** ([Ford, Parsons, Kua and Sadalage, 2nd ed., 2022](https://thoughtworks.com/insights/books/building-evolutionaryarchitectures-second-edition)) supplies the feedback loop. Stressor analysis tells you what to build; fitness functions ([Technical Debt on the Balance Sheet](#technical-debt-and-fitness)) tell you whether it is still built.
 
-![The stressor-analysis loop. The output that matters is the incidence matrix: design changes that recur across many stressors become residues, are built into the roadmap, and are tested against a new set of stressors the following year.](finance-systems-architecture/diagrams/873f7b7e1b09252c.png)
+![An inner loop picks a stressor, simulates it, changes the design if needed and records the change, then repeats; the records feed an incidence matrix whose recurring changes are built as residues, tested against fresh stressors, and fed back to the estate.](finance-systems-architecture/posts/43-long-term-evolution/assets/images/43-long-term-evolution/stressor-analysis-loop.jpeg)
 
 **Figure 3:** *The stressor-analysis loop. The output that matters is the incidence matrix: design changes that recur across many stressors become residues, are built into the roadmap, and are tested against a new set of stressors the following year.*
 
@@ -263,7 +263,7 @@ Long-term coherence comes from a rhythm, not from a plan. Over a decade, Northme
 | **Vendor review** | September, before the main notice dates | Vendor tiers, dependency budgets, exit-plan maturity, vendor events | Tier and budget changes; exit tests for the next year; renewal postures ([Own Your Roadmap: Vendor Strategy Without Lock-In Panic](#vendor-portfolio-strategy)) | Dana with procurement, business owners, compliance |
 | **Stressor review** | November–December, before the year-end freeze and the next budget | Stressor list; detection signals; regulatory calendar; incidence matrix | New and retired stressors; residue ranking; funded changes (this chapter) | Dana; stressor owners |
 
-![The annual rhythm. Each review feeds the next. The stressor review closes the loop by ranking residues before the strategy refresh re-baselines the roadmap.](finance-systems-architecture/diagrams/9ca62879c7bffe13.png)
+![A year wheel: March strategy refresh, quarterly fitness reviews, June portfolio review, September vendor review and November to December stressor review, which feeds residue ranking back into the strategy refresh; fitness breaches and vendor events feed the stressor review, which returns new stressors to the vendor review.](finance-systems-architecture/posts/43-long-term-evolution/assets/images/43-long-term-evolution/annual-architecture-rhythm.jpeg)
 
 **Figure 6:** *The annual rhythm. Each review feeds the next. The stressor review closes the loop by ranking residues before the strategy refresh re-baselines the roadmap.*
 

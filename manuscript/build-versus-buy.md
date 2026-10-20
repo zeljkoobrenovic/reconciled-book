@@ -82,7 +82,7 @@ The tests are asked **per capability**, at the second level of the capability ma
 
 Two rules govern how the tests combine. First, **a build needs a pass on differentiation plus at least one of the other two**, and the controls burden must be accepted explicitly, by name, in the decision record; volume alone argues for a high-volume package, not for a custom one. Second, **a commodity capability is bought even when it is hard**: if the general ledger cannot carry the volume, the answer is to summarize before the ledger, not to write a ledger.
 
-![The sourcing decision tree. Differentiation decides whether building is even on the table; volume decides whether a package can carry the load; the controls burden decides who proves the result; and every path ends in a cost and exit check that can send the capability back to the start.](finance-systems-architecture/diagrams/573d455ab8eab19d.png)
+![A road from a capability through gates for advantage, volume and controls, fanning out to build, buy and extend, compose, fit-to-standard and outsource, all merging into a cost and exit checkpoint that leads to a decision record or loops back to the start.](finance-systems-architecture/posts/11-build-versus-buy/assets/images/11-build-versus-buy/sourcing-decision-tree.jpeg)
 
 **Figure 2:** *The sourcing decision tree. Differentiation decides whether building is even on the table; volume decides whether a package can carry the load; the controls burden decides who proves the result; and every path ends in a cost and exit check that can send the capability back to the start.*
 
@@ -208,7 +208,7 @@ The publicly documented counter-example is Birmingham City Council's Oracle Fusi
 
 When the tests say buy and the rationalization rules do not already name the platform, the enterprise selects a vendor. The process below is the one Dana makes mandatory for any finance-relevant selection above $1 million over the contract term. It has seven stages, each of which can exclude a vendor.
 
-![The selection process as a series of gates. Knock-outs, the proof of concept and the exit test can each exclude a vendor regardless of its score; the weighted score ranks only the vendors that survive them.](finance-systems-architecture/diagrams/9c810d278ee800f8.png)
+![Vendor boxes passing from requirements and a longlist through knock-out, proof of concept and exit-test gates, each of which can drop vendors into an excluded bin, before contract terms, a weighted score and a decision record.](finance-systems-architecture/posts/11-build-versus-buy/assets/images/11-build-versus-buy/selection-gates.jpeg)
 
 **Figure 4:** *The selection process as a series of gates. Knock-outs, the proof of concept and the exit test can each exclude a vendor regardless of its score; the weighted score ranks only the vendors that survive them.*
 
@@ -302,7 +302,7 @@ Acquisitions bring most finance estates their second and third ledgers, usually 
 
 Three dispositions cover almost every case. **Converge**: move the acquired entity onto the group platform and retire the acquired system. **Keep**: retain the acquired system in a defined role, such as a governed second-tier ERP, with entry criteria, a template and an interface into the group core. **Wrap**: keep the acquired system temporarily but surround it with the group's standards, so that it behaves like a group system to everything around it (canonical events out, the group chart of accounts by rule, group identity and access, the group's close calendar), while a dated plan converges or keeps it. Wrapping is the default for the first year after almost any acquisition, because it buys time without creating a permanent exception.
 
-![Post-acquisition decision rules. Every acquired finance system is wrapped first; it is kept only if its business model differs from the group's, the platform fits that model, and keeping it creates a reusable tier rather than a one-off exception.](finance-systems-architecture/diagrams/22a47547e4c9f9a9.png)
+![An acquired system is wrapped first, then passes checks for a different business model, platform fit and reusable template; it is kept as a tier only if all hold, otherwise it converges onto the group core or stays wrapped if a carve-out is likely.](finance-systems-architecture/posts/11-build-versus-buy/assets/images/11-build-versus-buy/acquisition-wrap-then-decide.jpeg)
 
 **Figure 5:** *Post-acquisition decision rules. Every acquired finance system is wrapped first; it is kept only if its business model differs from the group's, the platform fits that model, and keeping it creates a reusable tier rather than a one-off exception.*
 

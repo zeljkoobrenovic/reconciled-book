@@ -154,7 +154,7 @@ Money in flight, the value that has left one system and not yet arrived in the n
 
 A fitness function that someone computes by hand before each review is a status report. Northmere's rule is that every fitness function lands in FinDB from a system feed, and the review reads one model.
 
-![Fitness functions are computed from feeds the estate already produces, land in one FinDB model and are read in one quarterly review. The review updates the debt register and reads the gates that decide whether the next tranche of funding is released.](finance-systems-architecture/diagrams/d3cab1d6d21fdfb6.png)
+![Five existing feeds (pipelines, delivery ledgers, reconciliation, control matrix, ledgers) flow into FinDB, which feeds a fitness scorecard read in the quarterly review; the review updates the debt register and reads the tranche gates, which decide funding at the steering committee.](finance-systems-architecture/posts/39-technical-debt-and-fitness/assets/images/39-technical-debt-and-fitness/fitness-feeds-quarterly-review.jpeg)
 
 **Figure 3:** *Fitness functions are computed from feeds the estate already produces, land in one FinDB model and are read in one quarterly review. The review updates the debt register and reads the gates that decide whether the next tranche of funding is released.*
 
@@ -211,7 +211,7 @@ Three cross-checks keep the register honest.
 
 In OWNED I wrote the sequencing rule into the register in three steps. First, find the items whose external date leaves little more time than the work needs. Second, weigh each of them against the harm the undated items are doing now. Third, order the rest by what each tranche removes for its effort, read across all three columns. A finance estate needs the same rule with two adaptations: **finance has more kinds of dates**, and **the close critical path and key controls weigh in the third step**.
 
-![The OWNED sequencing rule adapted to a finance estate: dated items first when waiting would miss the date, then the rest by what each tranche removes for its effort, with the close critical path and key controls as the tie-break.](finance-systems-architecture/diagrams/f3157012b0012842.png)
+![Register items pass a date check: if the external date is close, the date is weighed against harm now and the item is brought forward or the undated item goes first; otherwise its latest start is recorded; items are ranked by removal per effort, with the close critical path as tie-break, into an ordered list.](finance-systems-architecture/posts/39-technical-debt-and-fitness/assets/images/39-technical-debt-and-fitness/debt-sequencing-rule.jpeg)
 
 **Figure 4:** *The OWNED sequencing rule adapted to a finance estate: dated items first when waiting would miss the date, then the rest by what each tranche removes for its effort, with the close critical path and key controls as the tie-break.*
 
@@ -251,7 +251,7 @@ Item 8 has no tranche of its own. Hand-off contracts are cheap to write while so
 
 A **tranche** is a separately approved stage of work and spending. A **gate** is the check, agreed before the stage starts, that the stage delivered what it promised and made nothing worse. In OWNED, gates were read from rehearsal results and bills. In a finance estate, the gate conditions are fitness-function readings, read by the same quarterly review, and a gate that is a fitness function cannot be passed by a status report.
 
-![A register item's life. An item is funded only after it has been measured and given a fitness function, and every tranche ends at a gate read from the fitness scorecard. Carrying an item is a recorded decision that is re-measured each quarter.](finance-systems-architecture/diagrams/ef122df60b008fec.png)
+![Stepping stones from Raised to Measured, Sequenced, Tranche funded, Gate read and Retired; a gate pass loops back to fund the next tranche, a miss goes through Redesign, and items carried on purpose are re-measured quarterly.](finance-systems-architecture/posts/39-technical-debt-and-fitness/assets/images/39-technical-debt-and-fitness/register-item-lifecycle.jpeg)
 
 **Figure 5:** *A register item's life. An item is funded only after it has been measured and given a fitness function, and every tranche ends at a gate read from the fitness scorecard. Carrying an item is a recorded decision that is re-measured each quarter.*
 

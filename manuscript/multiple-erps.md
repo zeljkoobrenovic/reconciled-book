@@ -81,7 +81,7 @@ The left column is what [Finance Data Architecture: Who Owns the Truth](#finance
 
 Five patterns cover nearly every multi-ERP estate. They differ in one thing above all: **where accounting decisions are made**, and therefore what the group core receives.
 
-![The five coexistence patterns, ordered roughly by how much they centralize. What crosses each arrow differs: transactions, a contracted trial balance, finished accounting documents, business events, or mapped trial balances. That difference decides where the group can drill down and who owns the posting logic.](finance-systems-architecture/diagrams/60d3d3ac14f2258c.png)
+![Five lanes, from most to least centralized: single instance sending transactions, two-tier sending a trial balance, central finance sending documents through mapping, an accounting hub sending events through an engine, and a federation sending mapped balances to consolidation.](finance-systems-architecture/posts/28-multiple-erps/assets/images/28-multiple-erps/five-coexistence-patterns.jpeg)
 
 **Figure 2:** *The five coexistence patterns, ordered roughly by how much they centralize. What crosses each arrow differs: transactions, a contracted trial balance, finished accounting documents, business events, or mapped trial balances. That difference decides where the group can drill down and who owns the posting logic.*
 
@@ -107,7 +107,7 @@ What makes two-tier ERP an architecture rather than a polite name for an excepti
 | **Controls and release** | Run the group's control standard and its own regression testing | The control framework and the evidence store | Tier-2 controls in the risk and control matrix, tested by the same auditor |
 | **Entry criteria and review** | Meet the tier's criteria while it exists | A dated review | A decision record with an exit test |
 
-![A tier-2 ERP is governable only if every arrow is a contract with an owner and a proof. Identities, chart and rates flow in from golden sources. Intercompany flows across through an interface rather than being matched late at consolidation. Trial balances and events flow out under control totals.](finance-systems-architecture/diagrams/7b70b2d218f41159.png)
+![A tier-2 ERP receiving identities and rates from golden sources, sending intercompany entries through an interface to the tier-1 core, sending trial balances to consolidation and events to an event backbone, with every arrow tagged as a signed contract and the close locked after consolidation.](finance-systems-architecture/posts/28-multiple-erps/assets/images/28-multiple-erps/governed-tier-two-contracts.jpeg)
 
 **Figure 3:** *A tier-2 ERP is governable only if every arrow is a contract with an owner and a proof. Identities, chart and rates flow in from golden sources. Intercompany flows across through an interface rather than being matched late at consolidation. Trial balances and events flow out under control totals.*
 
@@ -265,7 +265,7 @@ A decision without reversal conditions is a preference. Dana wrote down four, ea
 
 The first row reconciles the two fallbacks that [SAP S/4HANA: One Journal, Clean Core](#sap-s4hana) and [Oracle Fusion: An Accounting Hub for High-Volume Events](#oracle-fusion) recorded separately. If the group engine cannot carry the peak day, Oracle Accounting Hub keeps Wayfare's detail traceable, and Central Finance becomes the cheapest route for finished documents to reach the core. The two vendor components that each lost on its own become the fallback together.
 
-![Northmere's 2030 estate after the decision. Wayfare's ledger has gone, and its 12 entities join the 55 SAP company codes. One engine holds the posting rules for every event-shaped flow. Tablekin is the only second ledger, connected by contract rather than by a mapping spreadsheet. OneStream consolidates two trial-balance sources instead of three.](finance-systems-architecture/diagrams/664cc2d16355fb5a.png)
+![Stayloft, Wayfare and ad billing feed an event backbone into one accounting engine that posts to the S/4HANA group core and sends breaks to BlackLine; Tablekin is a separate ledger joined to the core by agreement; OneStream consolidates two sources, the core and Tablekin.](finance-systems-architecture/posts/28-multiple-erps/assets/images/28-multiple-erps/northmere-2030-estate.jpeg)
 
 **Figure 5:** *Northmere's 2030 estate after the decision. Wayfare's ledger has gone, and its 12 entities join the 55 SAP company codes. One engine holds the posting rules for every event-shaped flow. Tablekin is the only second ledger, connected by contract rather than by a mapping spreadsheet. OneStream consolidates two trial-balance sources instead of three.*
 
@@ -276,7 +276,7 @@ The decision changes the 2028 plan in specific ways. The route-A branch of the r
 
 Most multi-ERP estates are created by acquisitions, so the most valuable discipline is the one applied on the day a new ledger arrives. Northmere's playbook, adopted with the decision, turns [Build, Buy or Compose: Choosing What to Own](#build-versus-buy)'s post-acquisition rule into dated steps.
 
-![An acquired ledger moves through wrapping to one of three governed states. There is no path in which it remains merely tolerated, and every state other than convergence has a dated review.](finance-systems-architecture/diagrams/ff6a92d4e5ab3353.png)
+![An acquired ledger moves from deal close through day one and wrapping within 12 months to wrapped, then to converge, second tier, or keep wrapped; the latter two go through a dated review that can lead back to second tier or on to converge.](finance-systems-architecture/posts/28-multiple-erps/assets/images/28-multiple-erps/acquired-ledger-path.jpeg)
 
 **Figure 6:** *An acquired ledger moves through wrapping to one of three governed states. There is no path in which it remains merely tolerated, and every state other than convergence has a dated review.*
 

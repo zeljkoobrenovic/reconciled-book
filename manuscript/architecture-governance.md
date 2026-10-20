@@ -107,7 +107,7 @@ Dana turned the grid into four paths, each with a lead-time target measured from
 
 **Triage** is a service, not a meeting. One architect on a weekly rota reads each new request within two working days and assigns a path; the requester can challenge the assignment once. Of the 34 requests in the first seven weeks, the new rules would have sent 9 to the board or design authority instead of 27.
 
-![Every path writes to one register, and the register is what the other gates read. The board is one of four routes, and the route is chosen by consequence within two days, not by which system is touched.](finance-systems-architecture/diagrams/9e4326a1f4fa04e1.png)
+![A question goes to triage within two days and is routed to the team, the advice forum, the review board or the design authority; every route above the team writes to one decision register, which feeds the change, procurement, waiver and standards gates.](finance-systems-architecture/posts/34-architecture-governance/assets/images/34-architecture-governance/four-routes-one-register.jpeg)
 
 **Figure 3:** *Every path writes to one register, and the register is what the other gates read. The board is one of four routes, and the route is chosen by consequence within two days, not by which system is touched.*
 
@@ -217,7 +217,7 @@ A **mandatory standard** is a rule that every system in its scope must meet unle
 
 The rule Dana adopted is short: **no owner, no reference implementation, no conformance check, no mandate.** A standard without a reference implementation asks every team to build its own interpretation. A standard without a conformance check is enforced by reviewers' memories. Either way, it is a recommendation with ambitions.
 
-![The lifecycle of a standard. Each transition is a recorded decision. A standard reaches Mandatory only when the check that proves conformance is already running, and it leaves through Deprecated so that no system is left non-conformant overnight.](finance-systems-architecture/diagrams/aab99abb58ca75a4.png)
+![Stepping stones from Proposed through Trial and Mandatory to Deprecated and Retired, with Mandatory reached only when its conformance check is running, a self-loop for revisions, and Rejected as an exit from Proposed or Trial.](finance-systems-architecture/posts/34-architecture-governance/assets/images/34-architecture-governance/standard-lifecycle.jpeg)
 
 **Figure 4:** *The lifecycle of a standard. Each transition is a recorded decision. A standard reaches Mandatory only when the check that proves conformance is already running, and it leaves through Deprecated so that no system is left non-conformant overnight.*
 
@@ -250,7 +250,7 @@ A **waiver** is a recorded, time-limited permission for a named system not to me
 
 Every Northmere waiver names the standard clause and the system (by LeanIX ID), a person who owns closing it, the reason and the risk while it is open, and an **exit plan** linked to funded work. Where the system is in ICFR scope it names a **compensating control**, agreed with Internal Controls and itself evidenced. Its **expiry** is at most 12 months, or 6 where the compensating control is manual. The board may **renew it once**; a second renewal goes to the design authority, which must fund the exit or change the standard.
 
-![The lifecycle of a waiver. There is no state in which a waiver simply continues: every path ends in conformance, a changed standard, or a funded exit decided above the board.](finance-systems-architecture/diagrams/f88b2d26722bbe46.png)
+![A waiver moves from Requested to Declined or Granted, then Due for review, Renewed or Escalated; every active path ends in Closed, with escalations resolved by the design authority.](finance-systems-architecture/posts/34-architecture-governance/assets/images/34-architecture-governance/waiver-lifecycle.jpeg)
 
 **Figure 5:** *The lifecycle of a waiver. There is no state in which a waiver simply continues: every path ends in conformance, a changed standard, or a funded exit decided above the board.*
 

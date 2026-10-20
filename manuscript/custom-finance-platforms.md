@@ -136,7 +136,7 @@ From the table follow six rules I make mandatory in any estate I am responsible 
 5. **Accounting policy is configuration with an owner.** Recognition triggers, netting rules and payout rules are versioned artifacts approved by Finance, not constants in code.
 6. **Corrections are reversals, not updates.** Posted facts are immutable; the platform corrects them with new entries (the mechanics are in [Never Update, Only Append: Designing Custom Ledgers](#designing-financial-ledgers)).
 
-![SFP's boundary as it should be: the platform owns per-transaction facts and computes amounts; S/4HANA owns accounts, periods and balances and receives only summaries it can drill back from; payment execution, tax and safeguarding are shared services the platform calls rather than reimplements.](finance-systems-architecture/diagrams/919ac0284a654be1.png)
+![The Stayloft Finance Platform with commission rating, subledgers, payouts and summarization receives booking events, calls shared payment, tax and safeguarding services, and sends summaries to the S/4HANA general ledger, which owns accounts, periods and balances and drills back into the platform.](finance-systems-architecture/posts/13-custom-finance-platforms/assets/images/13-custom-finance-platforms/sfp-boundary.jpeg)
 
 **Figure 2:** *SFP's boundary as it should be: the platform owns per-transaction facts and computes amounts; S/4HANA owns accounts, periods and balances and receives only summaries it can drill back from; payment execution, tax and safeguarding are shared services the platform calls rather than reimplements.*
 
@@ -196,7 +196,7 @@ Summarization is only safe if it is provably lossless. Each day's posting carrie
 
 The fourth row is the one that matters most to Finance and is most often missing. A platform can post every summary correctly and still drift from the GL if a summary is posted to a closed period, reversed manually in the ERP or rejected and re-sent twice. The daily **subledger-to-GL reconciliation** catches all of these; the monthly version catches them too late to fix before the close. BlackLine already reconciles about 6,800 balance-sheet accounts a month at Northmere; SFP's control accounts should be among them with daily auto-certification.
 
-![Summarization is safe only when it is reversible and provably complete: the batch index makes every GL line traceable to its detail, and the daily subledger-to-GL reconciliation proves that nothing was lost, duplicated or posted outside the platform.](finance-systems-architecture/diagrams/5a916fd69091ef53.png)
+![Detail lines are summarized into batch summaries posted to the general ledger; drill-back through the batch index returns to the detail lines, and a daily reconciliation weighs detail against the ledger, sending breaks to an exception queue.](finance-systems-architecture/posts/13-custom-finance-platforms/assets/images/13-custom-finance-platforms/summarize-and-prove.jpeg)
 
 **Figure 3:** *Summarization is safe only when it is reversible and provably complete: the batch index makes every GL line traceable to its detail, and the daily subledger-to-GL reconciliation proves that nothing was lost, duplicated or posted outside the platform.*
 
@@ -255,7 +255,7 @@ Every custom finance component should face the same question every year: **would
 4. **Can its data obligations be met after retirement?** Retention, drill-back and audit access for every period it supported, through an archive with a read path.
 5. **Can the team keep it to standard?** If the controls, evidence and knowledge cannot be sustained (key people leaving, audit findings recurring), the component is a risk, whatever its other merits.
 
-![The retirement test applied per component: differentiation decides whether convergence is even considered, and a proven alternative, a full cost comparison and a preserved audit trail decide whether it happens now.](finance-systems-architecture/diagrams/327629435b18b636.png)
+![Four checks in a row: does it differentiate, is a platform proven, is converging cheaper, can the audit trail be kept; passing all leads to converging on a plan, otherwise keep custom, tolerate and retest, or build the archive first.](finance-systems-architecture/posts/13-custom-finance-platforms/assets/images/13-custom-finance-platforms/component-retirement-test.jpeg)
 
 **Figure 4:** *The retirement test applied per component: differentiation decides whether convergence is even considered, and a proven alternative, a full cost comparison and a preserved audit trail decide whether it happens now.*
 

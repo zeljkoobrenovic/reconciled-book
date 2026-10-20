@@ -120,7 +120,7 @@ A sixth case cuts across all five: **marketplace purchases**. Third-party softwa
 
 Northmere's design authority approved the target design in **May 2027**. Its central rule follows the FinDB charter in [One Number, Many Views: Finance Data from Operations to Analytics](#finance-data-flows): **FinDB is the book for nothing.** FinDB lands, conforms and enriches the billing data as a **contracted data product**, with control totals and under IT general controls. The accounting decisions (which account, which entity, which period, which amount) are made in a separate **technology cost posting service**. It is built on the posting-pipeline template from [Principles That Decide Things](#principles-standards-reference), and its rules are versioned in a rule store. The idempotent-posting standard (STD-FIN-02) applies to it like any other feed.
 
-![FOCUS data is landed and enriched in FinDB as a contracted data product, but every accounting decision is made in a posting service with versioned rules. One cut-off snapshot feeds the journals and the tie-out, so the books and the evidence come from the same data.](finance-systems-architecture/diagrams/7462f9aab4b0bdc6.png)
+![FOCUS data lands in FinDB, a posting service takes one snapshot that feeds both the journals posted to S/4HANA and intercompany, and a tie-out with invoices and the ledger whose evidence goes to BlackLine.](finance-systems-architecture/posts/45-finops/assets/images/45-finops/focus-to-ledger-pipeline.jpeg)
 
 **Figure 2:** *FOCUS data is landed and enriched in FinDB as a contracted data product, but every accounting decision is made in a posting service with versioned rules. One cut-off snapshot feeds the journals and the tie-out, so the books and the evidence come from the same data.*
 
@@ -156,7 +156,7 @@ The fix treats allocation inputs as master data with authorities, as [Finance Da
 
 **Figure 3:** *When tag values are validated against the finance masters and backed by a sub-account register, spend stops pooling in an unowned basin; Northmere's allocated share rose from 77% in January 2027 to 96% in December.*
 
-![The allocation hierarchy. The provider-enforced account structure is the primary key, tags refine it, and every value is validated against finance master data. Two separate decisions follow: the natural account, set by environment, and the route, set by whether the cost crosses a legal entity.](finance-systems-architecture/diagrams/e96767ea0ffd7947.png)
+![A tree from billing account to sub-account, then register and tags validated against finance masters converging on dimensions, which fork into the natural account decision and a same-entity check that routes to a cost-center charge or an intercompany recharge.](finance-systems-architecture/posts/45-finops/assets/images/45-finops/allocation-hierarchy.jpeg)
 
 **Figure 4:** *The allocation hierarchy. The provider-enforced account structure is the primary key, tags refine it, and every value is validated against finance master data. Two separate decisions follow: the natural account, set by environment, and the route, set by whether the cost crosses a legal entity.*
 
@@ -180,7 +180,7 @@ The account numbers follow the group chart of accounts v2 design in [Finance Dat
 
 The posting service ran in shadow, alongside the workbook, through the **July and August 2027** closes. Its first live month was **September 2027**, and the quarterly workbook was retired after the Q3 close. The figures below are illustrative and in US dollars, NTI's functional currency.
 
-![The month-end sequence. One snapshot taken at the cut-off produces the accrual, the amortization and the recharges, and BlackLine receives the same snapshot's totals, so the tie-out tests the numbers that were actually posted.](finance-systems-architecture/diagrams/77a5dea273cf9371.png)
+![A timeline: on 1 October one snapshot feeds a posting service that posts accrual, amortization and recharge journals to S/4HANA; the invoice arrives on 2 October; BlackLine ties out the snapshot totals against the ledger.](finance-systems-architecture/posts/45-finops/assets/images/45-finops/month-end-sequence.jpeg)
 
 **Figure 5:** *The month-end sequence. One snapshot taken at the cut-off produces the accrual, the amortization and the recharges, and BlackLine receives the same snapshot's totals, so the tie-out tests the numbers that were actually posted.*
 

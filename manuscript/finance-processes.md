@@ -89,7 +89,7 @@ These five properties are the unit of design in this chapter. [Files, Events and
 
 Every process eventually feeds Record-to-Report. That is the structural fact that makes the close the place where every upstream weakness surfaces.
 
-![Every finance process converges on Record-to-Report, and treasury and tax are shared services that the operational processes call; a weak hand-off anywhere on the left shows up as a late or wrong number on the right.](finance-systems-architecture/diagrams/a3772071b32be48d.png)
+![Procure-to-pay, order-to-cash, partner payouts, acquire-to-retire and hire-to-retire all flow into a central record-to-report hub; treasury and tax are shared desks the processes call, which also post into the hub; the hub feeds plan-to-perform and filing and disclosure.](finance-systems-architecture/posts/06-finance-processes/assets/images/06-finance-processes/processes-converge-on-record-to-report.jpeg)
 
 **Figure 2:** *Every finance process converges on Record-to-Report, and treasury and tax are shared services that the operational processes call; a weak hand-off anywhere on the left shows up as a late or wrong number on the right.*
 
@@ -130,7 +130,7 @@ Days to close is a lagging indicator: **it measures how long it takes to prove t
 
 **Systems at Northmere.** Coupa handles requisitions, POs, receipts and supplier invoices for indirect spend. S/4HANA holds the payable, the GL posting and the payment run. Vertex determines tax. Kyriba is the **payment factory**, the central hub that formats, screens and routes payment files to the banks, and returns statements to S/4 for clearing. Employee expenses run in parallel through SAP Concur into S/4.
 
-![Procure-to-Pay at Northmere crosses four systems and a bank; the five arrows between subgraphs are the hand-offs that need identifiers, control totals and an exception owner.](finance-systems-architecture/diagrams/400fdacc590fe37c.png)
+![Procure-to-pay crosses procurement, the ERP, a tax engine, treasury and the bank; every crossing — invoice, tax lines, payment file, payment and returning statements — carries a hand-off badge for identifier, control total and exception owner.](finance-systems-architecture/posts/06-finance-processes/assets/images/06-finance-processes/procure-to-pay-handoffs.jpeg)
 
 **Figure 3:** *Procure-to-Pay at Northmere crosses four systems and a bank; the five arrows between subgraphs are the hand-offs that need identifiers, control totals and an exception owner.*
 
@@ -185,7 +185,7 @@ The principal-versus-agent judgment and revenue timing belong to [Accounting for
 
 **Steps.** Booking published as a financial event; payment captured; PSP settlement received net of fees; liability recorded in the subledger (**deferred merchant bookings**, cash held for trips not yet taken); changes and cancellations adjust it; stay completed and revenue recognized; partner payable created; payout instructed and settled; three-way reconciliation of booking, PSP and bank; summary to the GL.
 
-![Book-to-Settle as swimlanes: the booking, the money and the accounting run in different systems on different clocks, and BlackLine's three-way match is where they are proven to agree.](finance-systems-architecture/diagrams/5252ceb76949c059.png)
+![Four swimlanes — booking, payments, finance platform and payouts — each on its own clock; booking and capture events create the liability, stay completion triggers revenue and the payout, and settlement, revenue and bank confirmations all meet at a three-way match on the right.](finance-systems-architecture/posts/06-finance-processes/assets/images/06-finance-processes/book-to-settle-swimlanes.jpeg)
 
 **Figure 5:** *Book-to-Settle as swimlanes: the booking, the money and the accounting run in different systems on different clocks, and BlackLine's three-way match is where they are proven to agree.*
 

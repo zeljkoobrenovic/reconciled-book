@@ -342,7 +342,7 @@ Every chapter in Parts I to IV opens with a callout naming the patterns it addre
 
 The patterns rarely appear alone. Most estates show several, and they feed each other in recognizable chains. Seeing the chain matters because **fixing a downstream symptom while the upstream pattern continues produces the same symptom again**, usually within a year.
 
-![The patterns form chains; most downstream symptoms, such as growing suspense balances, trace back to an upstream choice about authority, standards or vendors.](finance-systems-architecture/diagrams/e759953c7c3cebca.png)
+![Two river systems of failure patterns: from the Permanent Exception through the Doppelgänger Record, Capability Creep and Point-to-Point Spaghetti into Spreadsheet Glue and the Suspense Swamp, which with Audit Archaeology feeds Nobody's Bot; and from the Borrowed Roadmap through the Swiss-Army ERP and Customization Concrete to Big-Bang Bravado.](finance-systems-architecture/posts/where-finance-architecture-goes-wrong/assets/images/where-finance-architecture-goes-wrong/pattern-chains.jpeg)
 
 **Figure 15:** *The patterns form chains; most downstream symptoms, such as growing suspense balances, trace back to an upstream choice about authority, standards or vendors.*
 

@@ -75,7 +75,7 @@ The Stayloft and Wayfare merchant rows are the ones that confuse people. Northme
 
 **Figure 1:** *Holding the money, bearing the risk and being merchant of record are separate questions; Northmere is merchant of record for the €600 Lisbon payment, yet Stayloft acts as agent for the stay, so its revenue is the €90 commission.*
 
-![Money and data take different paths. Funds move issuer to scheme to acquirer to merchant, net at every hop, while the settlement report that explains the net travels separately. Chargebacks travel backwards along the money path.](finance-systems-architecture/diagrams/cf378a8192ebdac5.png)
+![Money flowing net through issuer, scheme, acquirer and Northmere Pay into a safeguarding vault, split to property and commission, while a settlement report travels separately to reconciliation and a chargeback arrow runs backwards.](finance-systems-architecture/posts/20-payments-fundamentals/assets/images/20-payments-fundamentals/money-path-and-data-path.jpeg)
 
 **Figure 2:** *Money and data take different paths. Funds move issuer to scheme to acquirer to merchant, net at every hop, while the settlement report that explains the net travels separately. Chargebacks travel backwards along the money path.*
 
@@ -95,7 +95,7 @@ Steps 4 and 5 are industry practice that varies in detail by scheme. A marketpla
 
 The common misconception is that **"authorized" means "paid."** The order system records success at authorization or capture. The cash arrives days later, inside a net figure that also contains other customers' refunds, earlier chargebacks and this week's fees. Every reconciliation problem in this chapter starts from that gap.
 
-![A card payment's states. Only the first transitions are visible at checkout. Expiry and void move no money, refunds can fail, and a reversed chargeback can be disputed again. The ledger must handle every state, including those that occur after the original period has closed.](finance-systems-architecture/diagrams/c14a8baef821e956.png)
+![A path of payment states from Authorized through Captured, Cleared and Settled to Paid out, with side branches to Expired and Cancelled and later branches to refunds and disputes, including a loop from reversed chargeback back to disputed.](finance-systems-architecture/posts/20-payments-fundamentals/assets/images/20-payments-fundamentals/card-payment-states.jpeg)
 
 **Figure 3:** *A card payment's states. Only the first transitions are visible at checkout. Expiry and void move no money, refunds can fail, and a reversed chargeback can be disputed again. The ledger must handle every state, including those that occur after the original period has closed.*
 
@@ -122,7 +122,7 @@ The Friday sale is booked into Adyen's settlement batch on Sunday 14 March, but 
 
 **The 16 March bank credit matched nothing on its own.** It was the net of every Stayloft card payment in the batch, minus their fees, refunds and chargebacks. Only the provider's settlement report links the €598.26 inside it to the Lisbon booking's reference. Without that report, the bank credit cannot be traced back to the booking.
 
-![The Lisbon booking. The traveler sees one step; Northmere sees an authorization, an asynchronous capture, a net batch payout explained by a separate report, and a partner payout five weeks later. Every arrow that carries the booking reference makes reconciliation possible; every arrow that drops it makes reconciliation manual.](finance-systems-architecture/diagrams/e2abd0518b5ca0e2.png)
+![A timeline from 12 March to 22 April showing the Lisbon booking's authorization, webhook, settlement report, safeguarded payout and partner payout, with a booking reference tag attached to every arrow.](finance-systems-architecture/posts/20-payments-fundamentals/assets/images/20-payments-fundamentals/lisbon-booking-timeline.jpeg)
 
 **Figure 4:** *The Lisbon booking. The traveler sees one step; Northmere sees an authorization, an asynchronous capture, a net batch payout explained by a separate report, and a partner payout five weeks later. Every arrow that carries the booking reference makes reconciliation possible; every arrow that drops it makes reconciliation manual.*
 
@@ -198,7 +198,7 @@ A **dispute** is the cardholder's challenge to a payment through their issuer; a
 
 Adyen's documented stages run from an optional request for information, through notification of chargeback (which starts the defense period), the chargeback debit, information supplied and chargeback reversed, to optional pre-arbitration, arbitration (where a loss can add a fee of up to USD 600) and second chargeback ([Adyen](https://docs.adyen.com/risk-management/understanding-disputes/dispute-process-and-flow)). Stripe debits the disputed amount plus a dispute fee, does not support the arbitration phase, and can report "late win" changes outside the normal cycle. **Two providers, two lifecycles**, one ledger.
 
-![A card dispute, generalized from documented provider flows. Funds leave at "Debited", long before the outcome is known, and a win can be reopened. Each state needs its own accounting, and each transition can land in a different period from the sale.](finance-systems-architecture/diagrams/4b9ab32846d78566.png)
+![Dispute states from Inquiry and Notified to Debited, where funds leave, then either Accepted or Defended, ending Reversed or Lost, with a second cycle that can reopen a win.](finance-systems-architecture/posts/20-payments-fundamentals/assets/images/20-payments-fundamentals/card-dispute-states.jpeg)
 
 **Figure 5:** *A card dispute, generalized from documented provider flows. Funds leave at "Debited", long before the outcome is known, and a win can be reopened. Each state needs its own accounting, and each transition can land in a different period from the sale.*
 
@@ -286,7 +286,7 @@ Regulation changes which flows are allowed, which data must be kept and which re
 
 A finance architect needs a component view that shows where payment data is created, transformed and matched.
 
-![Webhooks give operational state early; settlement reports give financial truth later. Both converge on normalization, which feeds the subledger and the reconciliation engine. Bank statements arrive independently, through treasury, to close the third leg of the match.](finance-systems-architecture/diagrams/1b9dc9d870ebed0e.png)
+![Architecture bands for commerce, Northmere Pay, providers and finance: provider webhooks and reports converge on normalization, which feeds the subledger and reconciliation, with bank statements arriving separately and everything ending in the general ledger.](finance-systems-architecture/posts/20-payments-fundamentals/assets/images/20-payments-fundamentals/payment-data-components.jpeg)
 
 **Figure 6:** *Webhooks give operational state early; settlement reports give financial truth later. Both converge on normalization, which feeds the subledger and the reconciliation engine. Bank statements arrive independently, through treasury, to close the third leg of the match.*
 

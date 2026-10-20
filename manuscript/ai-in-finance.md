@@ -138,7 +138,7 @@ The architecture has one organizing principle, which I state as a standard in [P
 
 Everything else is mechanism.
 
-![The agent never holds the pen. It reads through a policy-checked tool gateway, writes only proposals, and every disposition happens in the system of record's own approval control; the evidence log captures each step so a run can be reconstructed.](finance-systems-architecture/diagrams/88b3bc55c3645e70.png)
+![A trigger starts the agent, which goes through a tool gateway that allows read-only access to systems and lets it write only proposals; proposals pass validation and a human approval, which posts to the ledger or returns feedback, while an evidence log records the agent, gateway and approval steps.](finance-systems-architecture/posts/42-ai-in-finance/assets/images/42-ai-in-finance/agent-never-holds-pen.jpeg)
 
 **Figure 3:** *The agent never holds the pen. It reads through a policy-checked tool gateway, writes only proposals, and every disposition happens in the system of record's own approval control; the evidence log captures each step so a run can be reconstructed.*
 
@@ -164,7 +164,7 @@ The **Model Context Protocol (MCP)** is a reasonable standard for this layer. It
 {id: ai-in-finance--the-proposal-lifecycle}
 ### The proposal lifecycle
 
-![The agent controls only the first state of a proposal's lifecycle; amended and rejected proposals are kept, because they are the agent's measured error rate and the evaluation set for the next model or prompt change.](finance-systems-architecture/diagrams/2c22f07aa3c2c19b.png)
+![Stepping stones from Proposed, the only state the agent controls, to Awaiting review, then Approved, Posted and Reconciled; validation failures end Rejected by rule, reviewer changes go through Amended, and amended and rejected proposals drop into an evaluation set.](finance-systems-architecture/posts/42-ai-in-finance/assets/images/42-ai-in-finance/proposal-lifecycle.jpeg)
 
 **Figure 4:** *The agent controls only the first state of a proposal's lifecycle; amended and rejected proposals are kept, because they are the agent's measured error rate and the evaluation set for the next model or prompt change.*
 

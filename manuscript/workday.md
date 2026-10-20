@@ -157,7 +157,7 @@ Revenue posting rules shrink to one per stream, and the OneStream mapping become
 
 The lesson generalizes: **a good FDM is designed from both ends**, from the attributes feeder systems can supply reliably and from the group chart consolidation needs. Designed only from the first, it is a tidy tenant nobody can consolidate; only from the second, an account string with extra steps.
 
-![In Workday the ledger account is derived from categories and worktags, so the mapping to a group chart can be a rule on account plus worktag rather than a spreadsheet of account strings, provided the FDM was designed with the group dimensions in mind.](finance-systems-architecture/diagrams/0d01d6c9bab7380d.png)
+![An invoice line gains worktags for revenue category, plan, region and customer; Group Market derives from region; a posting rule turns the revenue category into the account; the journal line carries account and worktags, and a rule on account plus Group Market maps it into group consolidation.](finance-systems-architecture/posts/16-workday/assets/images/16-workday/worktags-derive-account.jpeg)
 
 **Figure 2:** *In Workday the ledger account is derived from categories and worktags, so the mapping to a group chart can be a rule on account plus worktag rather than a spreadsheet of account strings, provided the FDM was designed with the group dimensions in mind.*
 
@@ -249,7 +249,7 @@ Tablekin's Stripe inputs come from two products that [Stripe: Every Movement Is 
 
 Until the cutover, a MuleSoft flow pulls Stripe's reports nightly, aggregates them by company, revenue category and region using a mapping spreadsheet, and writes a file that an **EIB** (Enterprise Interface Builder, Workday's no-code file loader) posts as one summarized journal per company per day. It mostly works. But the mapping sits outside any audit trail, a re-run after failure can double-post, and the trail from a ledger balance to its balance transactions runs through a spreadsheet and a file nobody keeps: **Lost in Aggregation** in miniature. The March 2027 Stripe design review, described in [Stripe: Every Movement Is a Balance Transaction](#stripe), approved the replacement: Stripe Data Pipeline delivers all Northmere Stripe data into FinDB, and Tablekin's accounting moves to Accounting Center as daily summarized journals per reporting category, with drill-back to balance transactions. Dana makes the cutover conditional on proof:
 
-![With Accounting Center the mapping and the accounting rules move inside the tenant, under audit, and detail stays in a Prism table that the ledger can drill back to; the extraction from Stripe, the control totals and the rating of usage still happen outside Workday.](finance-systems-architecture/diagrams/36eca4049c8dc9fb.png)
+![Outside Workday, Stripe data is extracted into FinDB with control totals; inside the Workday tenant, a Prism table feeds validation, worktag mapping and accounting rules into the Workday ledger and group consolidation, with errors queued and the ledger drilling back to the Prism table.](finance-systems-architecture/posts/16-workday/assets/images/16-workday/accounting-center-flow.jpeg)
 
 **Figure 4:** *With Accounting Center the mapping and the accounting rules move inside the tenant, under audit, and detail stays in a Prism table that the ledger can drill back to; the extraction from Stripe, the control totals and the rating of usage still happen outside Workday.*
 
@@ -326,7 +326,7 @@ Its subtlety: **HCM masters the people and their assignments; finance masters th
 {id: workday--northmere-s-flows}
 ### Northmere's flows
 
-![Finance owns legal entities and cost centers and sends them into HCM; HCM owns workers, managers and approver roles and sends them everywhere else. Tablekin's separate Financials tenant is one more consumer, which is the point: the shared-object benefit of Workday is lost when HCM and Financials sit in different tenants.](finance-systems-architecture/diagrams/6e1ce576bc9e8625.png)
+![S/4HANA and Oracle Fusion send cost centers into Workday HCM; HCM sends workers and approvers back to both ledgers and out to identity and access, Coupa, Concur, payroll providers and the separate Tablekin Financials tenant.](finance-systems-architecture/posts/16-workday/assets/images/16-workday/hcm-org-and-access.jpeg)
 
 **Figure 5:** *Finance owns legal entities and cost centers and sends them into HCM; HCM owns workers, managers and approver roles and sends them everywhere else. Tablekin's separate Financials tenant is one more consumer, which is the point: the shared-object benefit of Workday is lost when HCM and Financials sit in different tenants.*
 

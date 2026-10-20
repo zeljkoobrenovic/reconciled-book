@@ -87,7 +87,7 @@ Two **side legs** explain why amounts differ. The **fee leg** splits gross minus
 
 Figure 2 shows the reference architecture Northmere's design authority approved in March 2027 (it is the worked example in [Principles That Decide Things](#principles-standards-reference)).
 
-![Northmere's payments-to-ledger reference architecture. Provider formats stop at the adapters; everything downstream speaks canonical events. The subledger holds expected receivables item by item, the ledger holds clearing balances by stage, and the matching engine proves the three legs against an independent bank feed. Breaks go back to the team that can remove their cause.](finance-systems-architecture/diagrams/05a965558d9cfe7d.png)
+![Providers' differing files stop at adapters and normalization; canonical events feed the subledger and ledger, while a matching engine compares normalized settlements, subledger receivables and bank statements and sends breaks back upstream.](finance-systems-architecture/posts/25-payments-to-ledger/assets/images/25-payments-to-ledger/payments-to-ledger-reference.jpeg)
 
 **Figure 2:** *Northmere's payments-to-ledger reference architecture. Provider formats stop at the adapters; everything downstream speaks canonical events. The subledger holds expected receivables item by item, the ledger holds clearing balances by stage, and the matching engine proves the three legs against an independent bank feed. Breaks go back to the team that can remove their cause.*
 
@@ -200,7 +200,7 @@ For Northmere Pay the rule produced ten positions: Adyen and Stripe each with eu
 {id: payments-to-ledger--the-lifecycle-of-one-expected-receivable}
 ### The lifecycle of one expected receivable
 
-![An expected receivable moves through stage accounts until the bank leg closes it. "Awaiting data" is a status, not an exception: the item is overdue only because a file is late. An item becomes a break only after its grace period, and it leaves the break state by identification or by an approved write-off, never by netting.](finance-systems-architecture/diagrams/b003cb3adae421e0.png)
+![Receivable states from In flight through Settled and In transit to Banked, with a side state Awaiting data that returns to Settled or becomes a Break, which leaves either back to Settled or by approved write-off.](finance-systems-architecture/posts/25-payments-to-ledger/assets/images/25-payments-to-ledger/expected-receivable-states.jpeg)
 
 **Figure 3:** *An expected receivable moves through stage accounts until the bank leg closes it. "Awaiting data" is a status, not an exception: the item is overdue only because a file is late. An item becomes a break only after its grace period, and it leaves the break state by identification or by an approved write-off, never by netting.*
 
@@ -256,7 +256,7 @@ SFP opens the expected receivable in the in-flight account of the provider's USD
 
 The provider settles on Monday 5 April. Under its 2027 contract, it converted the net amount at IDR 16,330 per dollar and credited **USD 292.54** for this payment, within a daily payout for all its Northmere e-wallet payments of 1 April.
 
-![The three legs and two side legs for one e-wallet payment. Leg 1 matches in the currency the traveler paid, so FX cannot cause a false break. The fee is checked against the contract in that same currency; the conversion difference is measured against a tolerance and posted by rule.](finance-systems-architecture/diagrams/5fb113afa12a1c46.png)
+![One e-wallet payment matched along three legs, from expected receivable to settlement line to payout to bank credit, with the fee and FX difference split off the settlement line as side legs.](finance-systems-architecture/posts/25-payments-to-ledger/assets/images/25-payments-to-ledger/three-legs-one-payment.jpeg)
 
 **Figure 4:** *The three legs and two side legs for one e-wallet payment. Leg 1 matches in the currency the traveler paid, so FX cannot cause a false break. The fee is checked against the contract in that same currency; the conversion difference is measured against a tolerance and posted by rule.*
 
@@ -397,7 +397,7 @@ About a third of the problem (the refunds and the cut-offs) could be fixed in ma
 {id: payments-to-ledger--the-program-timeline}
 ### The program timeline
 
-![Northmere's payments-to-ledger program in Keystone Year 1. Design came first, then the fixes Northmere controlled itself, then the provider changes that took contract negotiation. Every step was measured by the same six metrics.](finance-systems-architecture/diagrams/d33e5a54ba66de90.png)
+![A roadmap from Q1 2027 design through internal fixes, new clearing accounts and daily reconciliation to the last providers in 2028, measured throughout by the same six metrics.](finance-systems-architecture/posts/25-payments-to-ledger/assets/images/25-payments-to-ledger/program-year-one.jpeg)
 
 **Figure 6:** *Northmere's payments-to-ledger program in Keystone Year 1. Design came first, then the fixes Northmere controlled itself, then the provider changes that took contract negotiation. Every step was measured by the same six metrics.*
 

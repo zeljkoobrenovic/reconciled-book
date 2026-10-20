@@ -23,7 +23,7 @@ The order follows the finance landscape from [FOUNDATIONS: How Money Moves Throu
 {id: part-2--the-learning-path}
 ## The Learning Path
 
-![Eleven chapters in four stages, following the finance landscape: custom platforms, the ledgers of record, the close and consolidation layer above them, and the payment and satellite platforms at the edge of the core.](finance-systems-architecture/diagrams/53fcbc6e1ba5a000.png)
+![Four islands joined by bridges: built-in-house platforms, the ERP cores, close and consolidation, and payments and satellite platforms, ending at a flag for knowing what each platform owns.](finance-systems-architecture/posts/part-2-intro/assets/images/part-2-intro/part-2-four-stages.jpeg)
 
 **Figure 1:** *Eleven chapters in four stages, following the finance landscape: custom platforms, the ledgers of record, the close and consolidation layer above them, and the payment and satellite platforms at the edge of the core.*
 

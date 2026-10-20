@@ -151,7 +151,7 @@ For volume, Oracle documents [Flexible Configuration](https://docs.oracle.com/en
 
 The same page carries a warning that matters for integration contracts: when new columns are added, you must download a new transaction template. **The template is part of the interface contract, and Oracle can change it.**
 
-![In Fusion every journal, whether from an Oracle subledger or from an external source through Accounting Hub, is produced by the same Subledger Accounting engine and keeps its detail in the subledger repository; General Ledger and the balances cube see only what the chart of accounts can express.](finance-systems-architecture/diagrams/92d810edc984c919.png)
+![External platforms through Accounting Hub and Oracle subledgers both feed one accounting rules engine; its detailed journals stay in the subledger repository, which feeds analytics, while a funnel passes summarized lines to the general ledger, the balances cube and OneStream.](finance-systems-architecture/posts/17-oracle-fusion/assets/images/17-oracle-fusion/one-accounting-engine.jpeg)
 
 **Figure 2:** *In Fusion every journal, whether from an Oracle subledger or from an external source through Accounting Hub, is produced by the same Subledger Accounting engine and keeps its detail in the subledger repository; General Ledger and the balances cube see only what the chart of accounts can express.*
 
@@ -236,7 +236,7 @@ The rules produce four journals in the EUR primary ledger of the French selling 
 
 After the four events, the ticket has left €6.72 of revenue, €1.51 of fees and €5.21 of net cash, and both the PSP clearing account and the supplier payable for this ticket are back to zero. The reason to account per event rather than per day is visible in that last sentence: **a clearing account that nets to zero per ticket can be reconciled per ticket**, and an item that does not net out is a specific ticket with a specific missing event, not an unexplained residue in a daily summary. That is the property the payments-to-ledger design in [Payments-to-Ledger: Draining the Suspense Swamp](#payments-to-ledger) depends on, and the reason Northmere's €14 million suspense problem is a design problem rather than a staffing one.
 
-![The ticket's events travel as files, are accounted by rules rather than by the booking platform, and reach General Ledger summarized; the detail stays one drill-down away in the subledger repository instead of being discarded before Fusion sees it.](finance-systems-architecture/diagrams/85e1068708b601a2.png)
+![Ticket events dated 3 and 5 March leave the booking platform, pass an adapter check, travel as daily files into Accounting Hub, which keeps the ticket detail in a cabinet and sends summarized journals to the general ledger, with a dotted drill-down line back to the detail and a monthly feed to OneStream.](finance-systems-architecture/posts/17-oracle-fusion/assets/images/17-oracle-fusion/rail-ticket-through-accounting-hub.jpeg)
 
 **Figure 3:** *The ticket's events travel as files, are accounted by rules rather than by the booking platform, and reach General Ledger summarized; the detail stays one drill-down away in the subledger repository instead of being discarded before Fusion sees it.*
 
@@ -268,7 +268,7 @@ Fusion exposes several integration mechanisms, each suited to a different job. T
 
 The Data Extraction capability is the one surface I would treat with the most caution. As of October 2026 its public description comes mostly from Oracle architecture blogs rather than product documentation, and practitioners report that it must be enabled by an administrator and that object coverage is being added release by release. A design that depends on it should check coverage per object in the current release notes and keep BICC as the fallback.
 
-![Each Fusion surface has one job: REST for low-volume transactions, FBDI for bulk inbound, business events for notifications, and Data Extraction or BICC for bulk outbound. Using a reporting tool as an extraction API, or a REST API as a bulk loader, is the most common integration defect in Fusion estates.](finance-systems-architecture/diagrams/2c1349ac67d6f259.png)
+![Inbound MuleSoft flows use the small REST door and the rail adapter's bulk files use the FBDI loading bay; business events notify MuleSoft; the general ledger feeds OneStream and the Data Extraction loading bay sends bulk extracts to BlackLine and FinDB.](finance-systems-architecture/posts/17-oracle-fusion/assets/images/17-oracle-fusion/fusion-integration-surfaces.jpeg)
 
 **Figure 4:** *Each Fusion surface has one job: REST for low-volume transactions, FBDI for bulk inbound, business events for notifications, and Data Extraction or BICC for bulk outbound. Using a reporting tool as an extraction API, or a REST API as a bulk loader, is the most common integration defect in Fusion estates.*
 

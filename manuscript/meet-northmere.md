@@ -81,7 +81,7 @@ Two entities are special because they are regulated as financial institutions:
 
 Northmere's 2027 baseline estate has a recognizable shape: one group finance core on SAP, two brand ERPs from acquisitions, a custom platform for the brand that generates most of the volume, specialist platforms for close, consolidation, tax and treasury around the core, and three integration technologies connecting them.
 
-![Northmere's 2027 baseline: three ledgers meet only at consolidation in OneStream, and most of the volume flows through a custom platform before it reaches the group core.](finance-systems-architecture/diagrams/bbea9b0d07b7ae68.png)
+![Three lanes: Stayloft and Northmere Pay feed thick flows through the custom Finance Platform into S/4HANA, Wayfare feeds Oracle Fusion, Tablekin feeds Workday Financials, and the three ledgers meet only at OneStream.](finance-systems-architecture/posts/meet-northmere/assets/images/meet-northmere/northmere-baseline-estate.jpeg)
 
 **Figure 2:** *Northmere's 2027 baseline: three ledgers meet only at consolidation in OneStream, and most of the volume flows through a custom platform before it reaches the group core.*
 
@@ -169,7 +169,7 @@ None of these is a technology problem alone. The close is slow because the estat
 
 In **December 2026** Northmere's board approved **Program Keystone**, a multi-year finance transformation sponsored by Tomás, with a design authority chaired by Dana together with Leila. Its budget is about **$310 million** over five years (capital and operating spend), against a target of **$95 million** a year in run-rate savings by 2030 from retired systems, reduced manual effort and lower payment-provider and bank costs.
 
-![Keystone moves through three plateaus; each must leave the estate stable and closable on its own, not only as a step toward the next.](finance-systems-architecture/diagrams/ff09613986ce384f.png)
+![Rising terraces from a cluttered 2026 baseline to three flat plateaus: stabilize in year 1, one finance core in year 3 and real-time finance in year 5.](finance-systems-architecture/posts/meet-northmere/assets/images/meet-northmere/keystone-plateaus.jpeg)
 
 **Figure 4:** *Keystone moves through three plateaus; each must leave the estate stable and closable on its own, not only as a step toward the next.*
 

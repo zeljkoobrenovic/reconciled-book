@@ -60,7 +60,7 @@ Stripe's API has many objects. For finance, they fall into three groups: objects
 
 The [PaymentIntent](https://docs.stripe.com/payments/paymentintents/lifecycle) is the object engineers know best (Stripe now recommends its Checkout Sessions API over raw PaymentIntents for most integrations). For finance it is operational: `succeeded` says a payment was collected, not how much Stripe kept, when the funds become available or in which payout they leave. Captures can be partial, so its amount is not the ledger amount.
 
-![Commercial and payment objects describe intent and outcome; every object that moves money leaves a balance transaction, and balance transactions are what payouts group and what the ledger should be built from.](finance-systems-architecture/diagrams/6df3189cb8b787b6.png)
+![Subscription, Invoice, PaymentIntent and Charge in a chain; Charge leads to Refund, Dispute and Transfer; each money-moving object drops a slip into a tray of balance transactions, which feeds the payout bundle and the ledger book.](finance-systems-architecture/posts/22-stripe/assets/images/22-stripe/objects-leave-balance-transactions.jpeg)
 
 **Figure 1:** *Commercial and payment objects describe intent and outcome; every object that moves money leaves a balance transaction, and balance transactions are what payouts group and what the ledger should be built from.*
 
@@ -176,7 +176,7 @@ The venue receives the same money in both designs. Tablekin's books do not look 
 
 I would approve Arjun's direction on three conditions: the policy team reassesses principal-versus-agent before the first migrated venue goes live; the commercial team reprices so the venue's all-in cost and Tablekin's margin are explicit; and OneStream's segment mapping flags gross and net presentation during the transition. Tablekin gives up some reported revenue and control of the fee experience, and gains a balance sheet that holds only its own money.
 
-![The same economics routed two ways: under destination charges the gross amount, the fee and the dispute risk pass through Tablekin's balance; under direct charges only the application fee does.](finance-systems-architecture/diagrams/f3c21840974c0c18.png)
+![Two rows: under a destination charge the 180.00 flows into Tablekin's jar and out to the venue and Stripe, leaving 0.54; under a direct charge the 180.00 flows into the venue's jar and only the 0.54 fee reaches Tablekin.](finance-systems-architecture/posts/22-stripe/assets/images/22-stripe/destination-versus-direct-charges.jpeg)
 
 **Figure 3:** *The same economics routed two ways: under destination charges the gross amount, the fee and the dispute risk pass through Tablekin's balance; under direct charges only the application fee does.*
 
@@ -305,7 +305,7 @@ The third idea is the one Tablekin is missing. A **Stripe clearing account** in 
 
 This is the posting design Dana's review approved for Tablekin. Accounts are named descriptively; in Workday they are ledger accounts with worktags (Workday's dimensional attributes such as company, cost center and revenue category, described in [Workday: The Org Chart Behind the Ledger](#workday)). Sales tax is left out to keep the arithmetic visible: in production the invoice's tax lines post to a sales-tax-payable account. The Stripe fee of **$30.14** is illustrative (it is roughly the shape of a card price of 2.9% plus 30 cents, not Tablekin's negotiated rate). The payout total is illustrative.
 
-![The Tablekin invoice crosses three time boundaries: usage is earned in March, invoiced and paid on 1 April, and paid out on 5–6 April. Each boundary is a separate journal, not one net line.](finance-systems-architecture/diagrams/7ed95fe7fd75349a.png)
+![A timeline in three segments: usage metered in March with a 780 accrual, the 1,029 invoice paid on 1 April, and the payout reaching the bank on 5 to 6 April, each segment posting its own journal into a separate book.](finance-systems-architecture/posts/22-stripe/assets/images/22-stripe/three-time-boundaries.jpeg)
 
 **Figure 5:** *The Tablekin invoice crosses three time boundaries: usage is earned in March, invoiced and paid on 1 April, and paid out on 5–6 April. Each boundary is a separate journal, not one net line.*
 
@@ -385,7 +385,7 @@ At group level, Stripe's place is defined by its interfaces:
 - **To Snowflake FinDB**: Data Pipeline shares for every Stripe account, immutable raw layer, normalized canonical layer shared with Adyen.
 - **To Northmere Pay's routing**: Stripe is one route among several. Stripe Orchestration is in [private preview](https://docs.stripe.com/payments/orchestration) as of October 2026. It routes PaymentIntents to other processors, but it "doesn't support disputes or settlement-related activity" and does not support Connect. That means it unifies routing but not the settlement data that finance needs, so it does not change Northmere Pay's design.
 
-![Webhooks serve operations; the finance path runs from Data Pipeline through one normalized layer, shared with Adyen, to the brand ledgers and BlackLine, and reaches consolidation only through the ledgers.](finance-systems-architecture/diagrams/cd991b0d72ced7c9.png)
+![Stripe webhooks go to brand operations; Stripe's Data Pipeline and Adyen feed one normalized layer, which feeds the Workday and Oracle Fusion ledgers and BlackLine, with the bank also feeding BlackLine and only the ledgers feeding OneStream.](finance-systems-architecture/posts/22-stripe/assets/images/22-stripe/stripe-finance-path.jpeg)
 
 **Figure 6:** *Webhooks serve operations; the finance path runs from Data Pipeline through one normalized layer, shared with Adyen, to the brand ledgers and BlackLine, and reaches consolidation only through the ledgers.*
 

@@ -137,7 +137,7 @@ The criterion I see violated most is the fifth, and it is the one public failure
 {id: finance-transformation--keystone-s-sequence}
 ### Keystone's sequence
 
-![Keystone's sequence follows dependencies first and dated constraints second. Regulatory and contract dates (ViDA, the colocation end) pull specific items forward; ledger convergence comes last because almost everything else is its prerequisite.](finance-systems-architecture/diagrams/1c768b58e2f8338e.png)
+![A roadmap from 2027 to 2030: decision rights first, then CoA v2, payments to ledger and wave 0; in 2028 ViDA and the colocation end as dated constraints, canonical events and merchant invoicing; ledger convergence in 2029 and continuous close last.](finance-systems-architecture/posts/38-finance-transformation/assets/images/38-finance-transformation/keystone-sequence-roadmap.jpeg)
 
 **Figure 2:** *Keystone's sequence follows dependencies first and dated constraints second. Regulatory and contract dates (ViDA, the colocation end) pull specific items forward; ledger convergence comes last because almost everything else is its prerequisite.*
 
@@ -157,7 +157,7 @@ A **global template** is the single, documented design that every entity, brand 
 
 Keystone's governance, as chartered in December 2026 and adjusted in March 2027, is below.
 
-![Keystone separates three authorities under one steering committee: the PMO owns plan and cost, the design authority owns the template and its variations, and a Finance-led benefits review owns the money. Workstreams bring design questions to the design authority, not to the integrator.](finance-systems-architecture/diagrams/773cf2b2b0a2d5e5.png)
+![Board above a steering committee, which oversees three pillars: the PMO with six workstreams, the design authority holding the template and taking advice from the review board and internal controls, and the benefits review; workstreams send design questions to the design authority.](finance-systems-architecture/posts/38-finance-transformation/assets/images/38-finance-transformation/keystone-governance-authorities.jpeg)
 
 **Figure 3:** *Keystone separates three authorities under one steering committee: the PMO owns plan and cost, the design authority owns the template and its variations, and a Finance-led benefits review owns the money. Workstreams bring design questions to the design authority, not to the integrator.*
 
@@ -207,7 +207,7 @@ The rule I use is the **"show me the control or the regulation" test.** When Fin
 
 If none of the three is shown, the answer is the standard process, and the organization changes instead of the software. If the regulation or the control is shown, the variation is granted and owned centrally. If the money is shown, the capability is real but almost never belongs inside the ERP core: it goes to a product-owned service at the edge, and the ERP receives its result through a released interface. Commission rules, pricing programs and payout logic are the classic examples, as [When the ERP Isn't Enough: Custom Finance Platforms](#custom-finance-platforms) argues.
 
-![The design authority's rule for gaps. Regulation and controls earn central localizations; differentiation earns a service outside the core; preference earns, at most, a cheap dated variation. Custom code inside the ERP core is not one of the outcomes.](finance-systems-architecture/diagrams/ae01fa9d67ac1376.png)
+![A conveyor carrying a gap through five gates: standard fit leads to configure, regulation to localization, key control to template change, funded differentiation to a service outside the core, cheap preference to a dated variation, and everything else is refused.](finance-systems-architecture/posts/38-finance-transformation/assets/images/38-finance-transformation/gap-sorting-rule.jpeg)
 
 **Figure 4:** *The design authority's rule for gaps. Regulation and controls earn central localizations; differentiation earns a service outside the core; preference earns, at most, a cheap dated variation. Custom code inside the ERP core is not one of the outcomes.*
 

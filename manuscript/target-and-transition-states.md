@@ -75,7 +75,7 @@ The vocabulary comes from two Open Group standards.
 
 Do not confuse these with **transitional architecture**, Thoughtworks' term for "software elements installed to ease the displacement of a legacy system", removed once migration completes ([Cartwright, Horn and Lewis, 2022](https://martinfowler.com/articles/patterns-legacy-displacement/transitional-architecture.html)). A transition *state* is a whole estate; transitional *architecture* is the scaffolding inside it: a replication feed, a dual posting, an interim reconciliation. Every plateau has some. The discipline is to list it, control it and give it a removal date.
 
-![Plateaus are whole estates at points in time, separated by gaps that work packages close; scaffolding lives inside plateaus with removal dates, and the open-decision register can revise the target and the later plateaus without invalidating the earlier ones.](finance-systems-architecture/diagrams/eca6c3e9f8b8f41b.png)
+![Stepped mesas from Baseline to Plateau 1, Plateau 2 and a hazy Target, with work-package bridges across the gaps, scaffolding with removal dates on the plateaus, and a decision register that may revise Plateau 2 and the target.](finance-systems-architecture/posts/36-target-and-transition-states/assets/images/36-target-and-transition-states/plateaus-and-gaps.jpeg)
 
 **Figure 1:** *Plateaus are whole estates at points in time, separated by gaps that work packages close; scaffolding lives inside plateaus with removal dates, and the open-decision register can revise the target and the later plateaus without invalidating the earlier ones.*
 
@@ -155,7 +155,7 @@ The fourth row matters as much as the first. **Deferring a decision on purpose, 
 
 Dana's roadmap has four states: the baseline, two plateaus and the target. She considered making 2028, the year with the most fixed external dates, a third plateau, and decided against it: the estate's shape barely changes in 2028, when shared services, the partner hub and the new chart are built and proven *beside* the old flows. Instead 2028 holds **waypoints**, landings that must pass the same four stability tests on a smaller scope.
 
-![Keystone's route passes through two plateaus, each defined as the estate on which a fiscal year-end closes; the 2027 Q4 decision forks the internal shape of Plateau 2 but not its exit tests, which is what lets the plateau be planned before the decision is taken.](finance-systems-architecture/diagrams/bad7a5b056ccaaf5.png)
+![A road from Baseline 2027 through Plateau 1 and 2028 waypoints to Plateau 2 and Target 2031, with the 2027 Q4 decision forking into Route A and Route B that both rejoin at the same Plateau 2 gate.](finance-systems-architecture/posts/36-target-and-transition-states/assets/images/36-target-and-transition-states/keystone-route-fork.jpeg)
 
 **Figure 3:** *Keystone's route passes through two plateaus, each defined as the estate on which a fiscal year-end closes; the 2027 Q4 decision forks the internal shape of Plateau 2 but not its exit tests, which is what lets the plateau be planned before the decision is taken.*
 
@@ -218,7 +218,7 @@ A roadmap is a set of dependencies before it is a set of dates. Finance roadmaps
 
 Each dependency gets an owner, a date and its slack. The **critical path** is the chain with none, and in finance it is usually set by a decision date and a period boundary rather than by build effort.
 
-![Keystone's critical path runs from the 2027 Q4 decision through the volume proof, posting rules and the 1 January 2029 chart go-live to the merchant subledger migration; because the chart can only go live at a year start, a three-month slip in the decision becomes a twelve-month slip in Plateau 2.](finance-systems-architecture/diagrams/1b12e98fe69cd15b.png)
+![A critical path of stepping stones from the 2027 Q4 decision through volume proof, posting rules and the 1 January 2029 CoA v2 go-live to the subledger migration and Plateau 2 exit, with side paths from FI-CA invoicing and the payout service.](finance-systems-architecture/posts/36-target-and-transition-states/assets/images/36-target-and-transition-states/critical-path-dominoes.jpeg)
 
 **Figure 5:** *Keystone's critical path runs from the 2027 Q4 decision through the volume proof, posting rules and the 1 January 2029 chart go-live to the merchant subledger migration; because the chart can only go live at a year start, a three-month slip in the decision becomes a twelve-month slip in Plateau 2.*
 
@@ -247,7 +247,7 @@ Three rules keep the labels meaningful.
 
 **Far items are directions, not dates.** "Continuous close by 2030" is a direction with a measure; where the roadmap figure shows such items, the label travels in the name.
 
-![The roadmap is organized by plateau, not by project; milestones sit on period boundaries, and items beyond the 2027 Q4 decision carry their confidence label in the name so that an exploratory bar cannot be read as a commitment.](finance-systems-architecture/diagrams/8f76da92a2c0e932.png)
+![A roadmap in four plateau bands from 2027 to 2031, with milestones such as the convergence decision, five-day close, CoA v2 go-live and three-day close sitting on year boundaries, and the later target bars drawn hatched and labeled exploratory.](finance-systems-architecture/posts/36-target-and-transition-states/assets/images/36-target-and-transition-states/roadmap-by-plateau.jpeg)
 
 **Figure 6:** *The roadmap is organized by plateau, not by project; milestones sit on period boundaries, and items beyond the 2027 Q4 decision carry their confidence label in the name so that an exploratory bar cannot be read as a commitment.*
 

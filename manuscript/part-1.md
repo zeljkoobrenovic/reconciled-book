@@ -23,7 +23,7 @@ The chapters move from the architecture practice, through the finance domain and
 {id: part-1--the-learning-path}
 ## The Learning Path
 
-![Twelve chapters in four stages: first the practice, then the domain it serves, then the disciplines every platform must respect, and finally how systems are sourced and replaced.](finance-systems-architecture/diagrams/5b15a1b21d9ece72.png)
+![Four rising steps with stacks of chapters, from the architecture practice through the finance domain and cross-cutting disciplines to sourcing and change, ending at a flag for judging any finance platform.](finance-systems-architecture/posts/part-1-intro/assets/images/part-1-intro/part-1-four-stages.jpeg)
 
 **Figure 1:** *Twelve chapters in four stages: first the practice, then the domain it serves, then the disciplines every platform must respect, and finally how systems are sourced and replaced.*
 

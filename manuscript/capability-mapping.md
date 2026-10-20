@@ -97,7 +97,7 @@ Three design choices shape it:
 - **Controls and Finance Data are level-1 groups,** not footnotes. Both are performed across every other group, both have owners (the Head of Internal Controls, the Head of Finance Data), and both are where audit findings and "three revenue numbers" problems come from.
 - **Payment acceptance itself is outside the map.** Checkout, PSP routing and fraud scoring belong to the payments product owned by Northmere Pay. The finance map starts where a payment becomes a financial fact. The boundary is drawn on the map's edge so nobody assumes it is missing by accident.
 
-![Northmere's ten level-1 capability groups and the main flows of financial facts between them; the four overlaps Keystone must resolve sit on Money Movement, Revenue and Billing, Close and Report, and Tax.](finance-systems-architecture/diagrams/270a83899f575e0a.png)
+![Spend, revenue and billing, money movement, tax and treasury feed the books of record, which feed close and report and then plan and perform; controls assure the books and the close, finance data feeds from below, and overlap badges sit on money movement, revenue and billing, tax, and close and report.](finance-systems-architecture/posts/02-capability-mapping/assets/images/02-capability-mapping/level-one-capability-flows.jpeg)
 
 **Figure 2:** *Northmere's ten level-1 capability groups and the main flows of financial facts between them; the four overlaps Keystone must resolve sit on Money Movement, Revenue and Billing, Close and Report, and Tax.*
 
@@ -264,7 +264,7 @@ A **context map** shows the bounded contexts and the relationships between them.
 - **Open-host service.** A context offers a defined protocol that any consumer may use. The Tax context offers tax determination as a service to every context that issues invoices or charges.
 - **Published language.** A documented, shared language for exchange between contexts. Keystone's canonical financial events (`BookingConfirmed`, `PaymentSettled`, `PartnerPayoutInstructed` and the rest) are Northmere's published language; [Canonical Events: A Common Language for Money](#loosely-coupled-domains) owns their design.
 
-![Northmere's target context map: canonical events as the published language from the brand platforms, anticorruption layers at the PSP and ERP boundaries, and customer-supplier relationships where finance contexts depend on each other's facts.](finance-systems-architecture/diagrams/01d6483254c39d4b.png)
+![Brand platforms send canonical events to payments and the subledger; PSP models enter payments through an adapter; payments and billing feed the subledger, which feeds revenue; the subledger and revenue post to the general ledger through adapters, and the ledger feeds consolidation.](finance-systems-architecture/posts/02-capability-mapping/assets/images/02-capability-mapping/target-context-map.jpeg)
 
 **Figure 3:** *Northmere's target context map: canonical events as the published language from the brand platforms, anticorruption layers at the PSP and ERP boundaries, and customer-supplier relationships where finance contexts depend on each other's facts.*
 
@@ -325,7 +325,7 @@ Conway's law, in Fowler's summary, says organizations design systems that mirror
 
 The final step of version 1 was a three-column trace for every level-2 capability: the capability, the applications that implement it, and the team that owns each application, plus a fourth column for the **capability owner**, a named Finance leader accountable for the outcome regardless of tool. The trace is mechanical. What it reveals is not.
 
-![Three overlapping capabilities traced to applications and owning teams: one application has no owner, and one team owns the minority implementation of all three overlaps.](finance-systems-architecture/diagrams/abcf793d353675fe.png)
+![Account reconciliation, tax determination and partner payouts each trace to applications tagged with their owning teams: one reconciliation tool has no owner, and Wayfare owns one application in each of the three overlaps.](finance-systems-architecture/posts/02-capability-mapping/assets/images/02-capability-mapping/overlaps-to-owning-teams.jpeg)
 
 **Figure 5:** *Three overlapping capabilities traced to applications and owning teams: one application has no owner, and one team owns the minority implementation of all three overlaps.*
 

@@ -110,7 +110,7 @@ For ledgers, the usual answer is a **hub**: a central accounting system that rec
 
 That difference decides what each one can strangle. **A replication hub strangles the ledger from the reporting side**: the group gets one set of books on the target chart of accounts first, and the source ledgers can be retired later, entity by entity, once their operations move. **An accounting hub strangles the accounting logic**: posting rules move out of the source system into governed configuration, and the source becomes a producer of business events. A brand ERP with its own subledgers is a natural candidate for replication. A custom platform that decides its own general-ledger (GL) accounts, as SFP still does in 2027, is a natural candidate for an accounting hub, because the thing worth taking away from it is the account determination.
 
-![A hub strangles ledgers in two ways. Replicated postings give the group one set of books before the source ledgers go. Events sent into an accounting rules engine take account determination out of the custom platform. In both cases, a source ledger function is retired only after reconciliation has proven source and core equal for several closes.](finance-systems-architecture/diagrams/6467e50d52fd324f.png)
+![Three source ledgers feed a group core ledger, two through mapping of replicated postings and the custom subledger through events into a rules engine; reconciliation against the core leads to retiring a source ledger, and the core feeds reporting.](finance-systems-architecture/posts/12-modernization-patterns/assets/images/12-modernization-patterns/hub-strangles-ledgers.jpeg)
 
 **Figure 1:** *A hub strangles ledgers in two ways. Replicated postings give the group one set of books before the source ledgers go. Events sent into an accounting rules engine take account determination out of the custom platform. In both cases, a source ledger function is retired only after reconciliation has proven source and core equal for several closes.*
 
@@ -138,7 +138,7 @@ Ian Cartwright, Rob Horn and James Lewis's [*Patterns of Legacy Displacement*](h
 
 Jonas's review of the 2025 FI-CA move used most of these patterns, some well and some badly. Figure 2 shows the shape that went live.
 
-![The 2025 agency displacement. Commission rating stayed in SFP; an interceptor sent agency partners' invoicing to FI-CA; a legacy mimic fed FI-CA's results back into SFP's statement pages so that partners saw no change. The interceptor and the mimic were transitional architecture, and both are still running in 2027.](finance-systems-architecture/diagrams/e98daa48f84e3c03.png)
+![Booking events flow to commission rating and an interceptor that routes agency partners to FI-CA invoicing and merchant partners to SFP invoicing; a legacy mimic feeds FI-CA results into partner statements, and both invoicing paths post to the general ledger.](finance-systems-architecture/posts/12-modernization-patterns/assets/images/12-modernization-patterns/agency-displacement-interceptor.jpeg)
 
 **Figure 2:** *The 2025 agency displacement. Commission rating stayed in SFP; an interceptor sent agency partners' invoicing to FI-CA; a legacy mimic fed FI-CA's results back into SFP's statement pages so that partners saw no change. The interceptor and the mimic were transitional architecture, and both are still running in 2027.*
 
@@ -271,7 +271,7 @@ A modernization is finished when the old system is gone, its controls are closed
 
 Order matters. The archive must prove itself while EBS still exists to check it against, and access must be removed before infrastructure, so that nothing is switched off while someone still depends on it.
 
-![The decommissioning sequence for the Wayfare EBS archive. The archive must prove itself against the live system before access is removed, and a failed retrieval drill sends the plan back to extraction. Records leave the archive only when their retention period ends and no hold applies.](finance-systems-architecture/diagrams/15301da8c73c54fd.png)
+![Stepping stones from read-only through extracted, retrieval drills, access removed and shut down to the archive, with a failed drill looping back to extraction and records leaving only when retention ends.](finance-systems-architecture/posts/12-modernization-patterns/assets/images/12-modernization-patterns/archive-decommissioning-path.jpeg)
 
 **Figure 5:** *The decommissioning sequence for the Wayfare EBS archive. The archive must prove itself against the live system before access is removed, and a failed retrieval drill sends the plan back to extraction. Records leave the archive only when their retention period ends and no hold applies.*
 

@@ -66,7 +66,7 @@ Architecture functions produce several kinds of guidance and often blur them. Th
 | **How it is tested** | Design review against its test | Automated checks, or attestation with sampling | Peer review | — | Conformance checklist at design and go-live | By construction: the kit runs the checks |
 | **Changes** | Rarely; recorded | Versioned; major versions need a transition period | Freely | Rarely | With the standards it implements | Released like software |
 
-![Guidance as a chain. Each link narrows interpretation and adds support; conformance results flow back to governance, which revises principles and standards. A link without a test breaks the chain.](finance-systems-architecture/diagrams/cd0f7d3dbb32ae82.png)
+![A chain of links from Intent through Principles, Standards, Reference architectures and Golden paths to Builds and Conformance checks, with results flowing down to the design authority and arrows back up to revise principles and standards.](finance-systems-architecture/posts/35-principles-standards-reference/assets/images/35-principles-standards-reference/guidance-chain.jpeg)
 
 **Figure 2:** *Guidance as a chain. Each link narrows interpretation and adds support; conformance results flow back to governance, which revises principles and standards. A link without a test breaks the chain.*
 
@@ -248,7 +248,7 @@ Note what was *not* promoted. P9 is enforced through STD-FIN-01's envelope rathe
 
 Every brand that takes payments faces the same question: how do provider events and settlement reports become accounting entries and reconciled cash? [Payments-to-Ledger: Draining the Suspense Swamp](#payments-to-ledger) owns the clearing account design, the three-way match and the €14 million suspense remediation; this section gives the reusable shape and its checks.
 
-![Payments-to-ledger reference architecture. Webhooks carry state early, settlement reports carry money later; both converge on one enterprise-owned normalization layer. The accounting engine posts from canonical events, and matching proves that clearing accounts empty out against the bank.](finance-systems-architecture/diagrams/7d76b779045c8d09.png)
+![Webhooks with early state and settlement reports with later money converge on one normalization funnel, which feeds the accounting engine and three-way matching; clearing accounts and the bank also feed matching, with exceptions flowing to a tray.](finance-systems-architecture/posts/35-principles-standards-reference/assets/images/35-principles-standards-reference/payments-to-ledger-reference.jpeg)
 
 **Figure 3:** *Payments-to-ledger reference architecture. Webhooks carry state early, settlement reports carry money later; both converge on one enterprise-owned normalization layer. The accounting engine posts from canonical events, and matching proves that clearing accounts empty out against the bank.*
 
@@ -283,7 +283,7 @@ Every brand that takes payments faces the same question: how do provider events 
 
 The second reference architecture applies wherever a high-volume subledger, custom or vendor, feeds a general ledger. [Never Update, Only Append: Designing Custom Ledgers](#designing-financial-ledgers) builds SFP's version component by component; this section abstracts it into a contract that any subledger must meet, whether SFP, SAP FI-CA, a vendor accounting engine or the Northmere Ads billing service.
 
-![Subledger-to-GL reference architecture. The summary carries a drill-back key and control totals; the GL accepts or rejects whole batches and returns its document number; a daily tie-out compares movements on both sides and sends any difference to reconciliation with an owner.](finance-systems-architecture/diagrams/b508bf0b63cca833.png)
+![The subledger's lines are summarized into a batch carrying a summary_id key and control totals, the general ledger accepts or rejects the whole batch and returns its document number, and a daily tie-out compares both sides and sends differences to reconciliation.](finance-systems-architecture/posts/35-principles-standards-reference/assets/images/35-principles-standards-reference/subledger-to-gl-handoff.jpeg)
 
 **Figure 4:** *Subledger-to-GL reference architecture. The summary carries a drill-back key and control totals; the GL accepts or rejects whole batches and returns its document number; a daily tie-out compares movements on both sides and sends any difference to reconciliation with an owner.*
 
@@ -307,7 +307,7 @@ The second reference architecture applies wherever a high-volume subledger, cust
 
 The third reference architecture governs the period end. Its components are mostly signals and gates rather than data pipelines, which makes it the least obvious to engineers and the most valuable to the controller, because the critical path of the close runs through it. [BlackLine: Matching, Certifying and Closing](#blackline) covers the close platform, [OneStream: Consolidating Actuals, Planning the Future](#onestream) consolidation, and [Order to Cash, Procure to Pay, Record to Report](#finance-processes) record-to-report as a process.
 
-![Close orchestration reference architecture. Ledgers emit cut-off signals with control totals; the calendar releases tasks on signals, not dates; consolidation locks an entity only when its key reconciliations are certified; every gate writes evidence that monitors can query.](finance-systems-architecture/diagrams/35fec90be3fbf19f.png)
+![Cut-off signals release tasks in the close calendar, which flow to matching, certification, an entity lock gate and consolidation; four gates write to a shared evidence store that control monitors query, feeding exceptions back to the calendar.](finance-systems-architecture/posts/35-principles-standards-reference/assets/images/35-principles-standards-reference/close-orchestration-reference.jpeg)
 
 **Figure 5:** *Close orchestration reference architecture. Ledgers emit cut-off signals with control totals; the calendar releases tasks on signals, not dates; consolidation locks an entity only when its key reconciliations are certified; every gate writes evidence that monitors can query.*
 

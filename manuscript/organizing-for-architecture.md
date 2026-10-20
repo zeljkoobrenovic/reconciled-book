@@ -74,7 +74,7 @@ Northmere's estate reads like an org chart once you know its history.
 | **SFP determining its own GL accounts** | Stayloft finance maintained an account-mapping table inside SFP because asking the group was slower than doing it locally |
 | **Spreadsheet mappings feeding OneStream** | The mapping work fell between three ledger teams and group reporting, so it landed in the only place nobody had to agree on: a workbook |
 
-![Conway's law in Northmere's finance estate. Each team built or kept a ledger-shaped system inside its own boundary, and the only place the boundaries met was the team that had to produce group numbers. The integration points of the estate are the communication paths of the organization.](finance-systems-architecture/diagrams/e119ca69a99d2c97.png)
+![Four fenced team islands, Stayloft, Group SAP, Wayfare and Tablekin, each with its own ledger; Stayloft sends daily summaries to Group SAP, and Group SAP, Wayfare and Tablekin send trial balances across to the Group reporting island's consolidation.](finance-systems-architecture/posts/41-organizing-for-architecture/assets/images/41-organizing-for-architecture/conway-team-islands.jpeg)
 
 **Figure 2:** *Conway's law in Northmere's finance estate. Each team built or kept a ledger-shaped system inside its own boundary, and the only place the boundaries met was the team that had to produce group numbers. The integration points of the estate are the communication paths of the organization.*
 
@@ -142,7 +142,7 @@ Four choices in the table carry most of the design.
 
 **Payments is one platform, run by its own leadership.** Northmere Pay is a licensed e-money institution, and its internal organization is Ingrid's; the finance topology sees one platform with a defined finance-facing service.
 
-![Northmere's target finance-technology topology for 2028, simplified to the principal interactions. Most edges are X-as-a-Service through a published interface; collaboration is reserved for named, time-boxed transitions; architecture and controls engineering facilitate rather than approve.](finance-systems-architecture/diagrams/db5853533f163db9.png)
+![Brand teams on top plug into five finance platforms as a service, platforms plug into three specialist subsystems, two striped overlaps with hourglasses mark time-boxed collaboration, and architecture and controls teams on the side facilitate with dashed arrows.](finance-systems-architecture/posts/41-organizing-for-architecture/assets/images/41-organizing-for-architecture/target-team-topology.jpeg)
 
 **Figure 4:** *Northmere's target finance-technology topology for 2028, simplified to the principal interactions. Most edges are X-as-a-Service through a published interface; collaboration is reserved for named, time-boxed transitions; architecture and controls engineering facilitate rather than approve.*
 
@@ -166,7 +166,7 @@ An interaction mode is a design decision with a shelf life: collaboration that n
 
 The handoff trace was the test case. Under the new design, the Payments Platform offers **new-payment-method onboarding as a service** with a bundled finance package: a normalization template, a pre-approved accounting pattern for alternative-payment-method clearing (a rule family Leila's accounting policy team approved once, not per method), clearing-account provisioning through the ERP platform's self-service request, a BlackLine matching template owned by close systems, and a control impact assessment template pre-agreed with Internal Controls. FinDB subscribes to normalized settlement events automatically through the hub.
 
-![The same change before and after the topology. Before, seven queues in sequence; after, one team runs a bundled service and Finance reviews only what departs from an approved pattern. The control boundary stays: accounting policy still owns the pattern and any exception.](finance-systems-architecture/diagrams/30402fccfaa0d463.png)
+![Before: a payment change waits in six queues in sequence, Policy, SFP, ERP, Reporting, Close and Controls, and goes live after 13 weeks. After: one team delivers an onboarding bundle, policy reviews exceptions only, and it goes live in about 3 weeks.](finance-systems-architecture/posts/41-organizing-for-architecture/assets/images/41-organizing-for-architecture/onboarding-before-after.jpeg)
 
 **Figure 5:** *The same change before and after the topology. Before, seven queues in sequence; after, one team runs a bundled service and Finance reviews only what departs from an approved pattern. The control boundary stays: accounting policy still owns the pattern and any exception.*
 

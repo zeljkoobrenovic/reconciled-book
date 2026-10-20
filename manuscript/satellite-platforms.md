@@ -70,7 +70,7 @@ Satellites attach to the core in four recurring shapes. Recognizing the shape te
 
 Some satellites use more than one shape. A treasury system is a gateway for payments and statements and a subledger for hedge accounting. That is acceptable as long as each interaction is contracted separately.
 
-![Northmere's satellites around the finance core. Every arrow is a contracted interface with an owner; the e-invoicing gateway is drawn as one box because that is the target, not yet the 2027 reality.](finance-systems-architecture/diagrams/a4d139857970d7ac.png)
+![The finance core ledger at the centre, ringed by satellites for tax, e-invoicing, treasury, data, consolidation, disclosure, expenses and source-to-pay, each attached by one interface arrow, with tax authorities and banks at the edge.](finance-systems-architecture/posts/23-satellite-platforms/assets/images/23-satellite-platforms/satellites-around-the-core.jpeg)
 
 **Figure 1:** *Northmere's satellites around the finance core. Every arrow is a contracted interface with an owner; the e-invoicing gateway is drawn as one box because that is the target, not yet the 2027 reality.*
 
@@ -156,7 +156,7 @@ The interesting question is the failure path. An engine called millions of times
 
 The rule I use is: **an estimate may degrade, a commit may wait, and nothing may silently guess.** A checkout page may show a price computed from a cached rate, because nothing is legally issued yet. An invoice may wait in a queue until the engine answers. What must never happen is a committed invoice carrying a fallback rate that nobody recalculates.
 
-![The tax call sequence. Estimates may fall back to a flagged cached rate; commits wait for the engine and are idempotent on the document identifier; the engine's committed journal is reconciled to the ledger's tax accounts before any return is filed.](finance-systems-architecture/diagrams/113930fa0e7a075c.png)
+![Checkout and invoicing both call the tax engine through one tax adapter; estimates can fall back to a flagged provisional rate, commits hold and retry, and the engine's tax journal is reconciled against the ledger.](finance-systems-architecture/posts/23-satellite-platforms/assets/images/23-satellite-platforms/tax-call-estimate-and-commit.jpeg)
 
 **Figure 3:** *The tax call sequence. Estimates may fall back to a flagged cached rate; commits wait for the engine and are idempotent on the document identifier; the engine's committed journal is reconciled to the ledger's tax accounts before any return is filed.*
 
@@ -217,7 +217,7 @@ At EU level, the **VAT in the Digital Age (ViDA)** package entered into force on
 
 Under clearance, the seller submits structured invoice data and waits for an acceptance, typically carrying a government-assigned identifier. Only then is the invoice legally issued, posted as issued and delivered. A rejection is not an error to log; it is an invoice that does not exist yet.
 
-![Clearance in the order-to-cash path. The receivable is posted as issued only after acceptance; rejections return to the invoicing system as documents that do not yet exist; the gateway keeps the legal original, which is the cleared version, not the ERP's copy.](finance-systems-architecture/diagrams/fc11d6cbf45aeeb0.png)
+![An invoice passes from invoicing through the e-invoicing gateway and provider to the tax authority; accepted invoices are posted as issued and delivered to the customer, rejected ones return for correction, and the gateway archives the legal original.](finance-systems-architecture/posts/23-satellite-platforms/assets/images/23-satellite-platforms/clearance-before-issue.jpeg)
 
 **Figure 4:** *Clearance in the order-to-cash path. The receivable is posted as issued only after acceptance; rejections return to the invoicing system as documents that do not yet exist; the gateway keeps the legal original, which is the cleared version, not the ERP's copy.*
 
@@ -282,7 +282,7 @@ The **cash position** answers "how much cash do we have, where, and what is abou
 
 A **payment factory** centralizes the execution of outgoing payments: the ERPs decide *what* to pay and *when*; the factory decides *how*. It receives proposals from each ERP's payment run, screens, deduplicates and approves them, formats and signs pain.001 instructions, routes them to the right bank and channel, and returns status to the originating ERP. A mature factory can pay and collect **on behalf of** subsidiaries (POBO and COBO) from central accounts, replacing external payments with intercompany balances; an **in-house bank** then keeps the internal accounts, charges internal interest and nets positions. It needs tight intercompany reconciliation, so the intercompany design in [Global by Design: Entities, Currencies, Jurisdictions and Brands](#global-scale) must be settled first.
 
-![Northmere's payment factory. S/4HANA decides what to pay; Kyriba screens, approves, formats, signs and routes; status and statements flow back so that the ledger, the bank and the cash position agree, and BlackLine proves it.](finance-systems-architecture/diagrams/db3887cc62ed7d8a.png)
+![Accounts payable sends payment runs into a payment factory that screens, approves and pays the banks; status and statements return to the factory, which updates payables, posts statements for bank reconciliation and reports the cash position to treasury.](finance-systems-architecture/posts/23-satellite-platforms/assets/images/23-satellite-platforms/payment-factory-loop.jpeg)
 
 **Figure 6:** *Northmere's payment factory. S/4HANA decides what to pay; Kyriba screens, approves, formats, signs and routes; status and statements flow back so that the ledger, the bank and the cash position agree, and BlackLine proves it.*
 

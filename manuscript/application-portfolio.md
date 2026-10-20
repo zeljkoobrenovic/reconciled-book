@@ -60,7 +60,7 @@ A **fact sheet** is the application's record in the EA repository. Tools such as
 
 A **lifecycle state** records where an application is in its life. EA tools ship with phase fields, and SAP LeanIX's application roadmap reports show phases such as planned, phased in, active and phased out, with end of life as a further value. For finance, I recommend making the end of the lifecycle finer than the tool's default, because the costly part of a finance application's life is often the last part:
 
-![A finance application's life does not end when users stop using it. It ends when its records leave retention. The states after "Active" are where retirement value is either taken or lost.](finance-systems-architecture/diagrams/1d6f5e282d546fe2.png)
+![A path of eight lifecycle states from Planned through Active to Destroyed; people use the system only up to Active, and the long highlighted stretch afterwards — phasing out, retiring, decommissioned, archive only — ends only when the records are destroyed.](finance-systems-architecture/posts/03-application-portfolio/assets/images/03-application-portfolio/application-lifecycle-states.jpeg)
 
 **Figure 1:** *A finance application's life does not end when users stop using it. It ends when its records leave retention. The states after "Active" are where retirement value is either taken or lost.*
 
@@ -111,7 +111,7 @@ Gartner has since moved its narrative toward "composable" ERP, so I present pace
 
 A portfolio practice is a pipeline. Facts come in from independent sources and are reconciled into the fact base. Scoring and classification turn facts into dispositions. Dispositions are sequenced into waves against contract dates and dependencies, and waves end in decommissioning, which feeds evidence back into the fact base and into the benefits register.
 
-![The portfolio is a pipeline from reconciled facts to evidenced retirements. Every decision traces back to sources outside the EA tool, and every saving traces forward to a decommissioning evidence pack.](finance-systems-architecture/diagrams/91fa3c9eb9cc1415.png)
+![Six external sources feed a fact base, which drives scoring, TIME disposition and a TCO model into a wave plan paced by renewals, then decision records and sunsets; each sunset returns an evidence pack to the fact base and realized savings to the benefits register.](finance-systems-architecture/posts/03-application-portfolio/assets/images/03-application-portfolio/portfolio-pipeline.jpeg)
 
 **Figure 2:** *The portfolio is a pipeline from reconciled facts to evidenced retirements. Every decision traces back to sources outside the EA tool, and every saving traces forward to a decommissioning evidence pack.*
 
@@ -217,7 +217,7 @@ Two results were not what anyone expected. The two brand ERPs landed in Tolerate
 
 The TIME classification says what to do with an application. The pace layer says **how to govern it while it lives**. In a finance estate the layers differ less in technology than in three things: how often they change, how much audit scope they carry, and how they are funded.
 
-![Northmere's finance applications by pace layer. Differentiating systems change weekly and feed the systems of record through a stable event contract, so fast change on top does not become uncontrolled change underneath.](finance-systems-architecture/diagrams/97e1b8d709821230.png)
+![Three stacked layers: innovation on top, fast-changing differentiation in the middle, and slow, heavy systems of record at the bottom; proven ideas move down, and differentiating systems reach the systems of record only through a single canonical-events gate.](finance-systems-architecture/posts/03-application-portfolio/assets/images/03-application-portfolio/pace-layers.jpeg)
 
 **Figure 3:** *Northmere's finance applications by pace layer. Differentiating systems change weekly and feed the systems of record through a stable event contract, so fast change on top does not become uncontrolled change underneath.*
 

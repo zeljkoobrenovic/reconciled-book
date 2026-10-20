@@ -80,7 +80,7 @@ Northmere's 71 entities fall into five types, and the type decides most of the d
 
 In early 2027 Northmere creates entities in SAP S/4HANA, Oracle Fusion, Workday, OneStream, Vertex, Kyriba and Workday HCM, each from a different document. That is **The Doppelgänger Record** in its purest form, and the reason Kofi needed 38 extracts. Keystone's response is a **legal entity register** as golden source, owned by Legal for identity and ownership and stewarded by Leila's team for accounting attributes. The register does not replace ERP configuration; it decides it.
 
-![The legal entity register decides how every system represents an entity, and each system confirms its code back, so the register holds the full cross-system mapping that interfaces, consolidation and tax reporting rely on.](finance-systems-architecture/diagrams/361e7c02c4b164d2.png)
+![A legal entity register publishes entity changes through an integration hub to eight systems; SAP S/4HANA, Oracle Fusion and Workday Financials send their system codes back to the register.](finance-systems-architecture/posts/10-global-scale/assets/images/10-global-scale/entity-register-loop.jpeg)
 
 **Figure 2:** *The legal entity register decides how every system represents an entity, and each system confirms its code back, so the register holds the full cross-system mapping that interfaces, consolidation and tax reporting rely on.*
 
@@ -202,7 +202,7 @@ Gross invoices of EUR 4,097,211.89 settle with EUR 2,703,159.85 of net movements
 | Stayloft Inc. (USD) | Intercompany payable – Stayloft B.V. | 1,500,000.00 | | |
 | Stayloft Inc. (USD) | Netting center clearing | | 1,500,000.00 | |
 
-![Three intercompany invoices in two currencies settle as four net movements with one currency conversion; the licensed entity takes part only with its own funds, never with safeguarded client money.](finance-systems-architecture/diagrams/4a74d4715babd08b.png)
+![Three March intercompany invoices between Stayloft Inc., Stayloft B.V., Northmere Services Ireland and Northmere Payments settle on 15 April as four net movements through a euro netting center with one dollar conversion, while client funds in a locked vault stay outside the netting.](finance-systems-architecture/posts/10-global-scale/assets/images/10-global-scale/netting-cycle.jpeg)
 
 **Figure 3:** *Three intercompany invoices in two currencies settle as four net movements with one currency conversion; the licensed entity takes part only with its own funds, never with safeguarded client money.*
 
@@ -230,7 +230,7 @@ Northmere's 71 entities use **19 functional currencies**. Three families of rate
 
 Two month-end processes are routinely conflated. **Revaluation** restates foreign-currency **monetary items** (cash, receivables, payables, loans) at the closing rate in each entity's books, with the difference in profit or loss; it runs **in each ledger**. **Translation** converts each entity's functional-currency statements into the group currency (assets and liabilities at closing, income and expense at transaction-date or average rates, equity at historical rates), with the balancing difference in other comprehensive income as the **cumulative translation adjustment** (CTA); it runs **once, in consolidation**. The order matters.
 
-![The month-end currency calendar: one rate publication feeds every ledger and the consolidation engine, revaluation runs per entity before matching, and translation runs once, centrally, after it.](finance-systems-architecture/diagrams/148f3ae4ff406c2e.png)
+![Treasury feeds a rate service that sends the same rate versions to the ledgers and OneStream on working day 1; ledgers revalue per entity, intercompany is matched by working day 2, and OneStream translates once centrally.](finance-systems-architecture/posts/10-global-scale/assets/images/10-global-scale/month-end-currency-calendar.jpeg)
 
 **Figure 5:** *The month-end currency calendar: one rate publication feeds every ledger and the consolidation engine, revaluation runs per entity before matching, and translation runs once, centrally, after it.*
 
@@ -297,7 +297,7 @@ The OECD's **Pillar Two** (GloBE) rules apply to groups with consolidated revenu
 
 For the architect, what matters is the **data shape**: per constituent entity, grouped into 38 jurisdictions, accounting income **as used for consolidation, before intercompany eliminations**; current and deferred taxes; **payroll** and **tangible assets** for the substance-based exclusion; intercompany data; and lineage for every adjustment, retained for years.
 
-![Pillar Two turns entity and jurisdiction data into a tax return; the calculation is only as good as the entity register, the pre-elimination entity results, and the payroll, asset and intercompany data behind them.](finance-systems-architecture/diagrams/568c76074c735026.png)
+![SAP S/4HANA, Oracle Fusion and Workday Financials feed OneStream's pre-elimination results; together with the entity register, payroll, fixed assets, tax provision and intercompany data they funnel into a versioned Pillar Two dataset that produces the GloBE return.](finance-systems-architecture/posts/10-global-scale/assets/images/10-global-scale/pillar-two-data-sources.jpeg)
 
 **Figure 7:** *Pillar Two turns entity and jurisdiction data into a tax return; the calculation is only as good as the entity register, the pre-elimination entity results, and the payroll, asset and intercompany data behind them.*
 

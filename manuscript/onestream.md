@@ -78,7 +78,7 @@ Vendor facts go stale quickly, so this section carries dates.
 
 An architect does not need to be able to prepare consolidated statements. They do need to know the steps well enough to see which steps depend on which data, which steps are controls, and where design errors show up. Group accounting standards set the rules: ASC 810 and ASC 830 under US GAAP, which Northmere follows, and [IFRS 10](https://www.ifrs.org/issued-standards/list-of-standards/ifrs-10-consolidated-financial-statements/) and [IAS 21](https://www.ifrs.org/issued-standards/list-of-standards/ias-21-the-effects-of-changes-in-foreign-exchange-rates/) under IFRS, which several of Northmere's statutory entities use. The sequence below is generic; OneStream, Oracle's consolidation service and SAP Group Reporting each implement a version of it.
 
-![Consolidation is a pipeline of dependent steps. Collection, validation, mapping and certification decide whether the data is fit to consolidate; translation, ownership, elimination and adjustment then produce group numbers that no single ledger contains.](finance-systems-architecture/diagrams/be7b63ffdcf08470.png)
+![A pipeline from Collect, Validate, Map and Certify on a teal panel, through a padlock, to Translate, Ownership, Eliminate and Adjust on an orange panel, ending in a book of group numbers.](finance-systems-architecture/posts/19-onestream/assets/images/19-onestream/consolidation-pipeline.jpeg)
 
 **Figure 2:** *Consolidation is a pipeline of dependent steps. Collection, validation, mapping and certification decide whether the data is fit to consolidate; translation, ownership, elimination and adjustment then produce group numbers that no single ledger contains.*
 
@@ -202,7 +202,7 @@ The deliberate omissions matter as much as the entries. Northmere does **not** h
 
 An EPM platform is a process engine as much as a calculation engine. OneStream's **workflow** defines, for each entity and scenario, who loads what data, which validations it must pass, who certifies it and when it is locked. The 10-K describes "hierarchical workflow management and task execution" combined in one engine. That is where the platform's controls live.
 
-![A workflow gate is a state machine. The control value comes from the transitions that are not allowed: no consolidation without lock, no lock without certification, no certification while an account is unmapped, and no unlock without an approved reason.](finance-systems-architecture/diagrams/37e51748bdf3b186.png)
+![Stepping stones from Imported through Validated, Certified and Locked to Consolidated, with a Rejected stone looping back to Imported, and an Unlocked stone reached from Locked only with an approved reason, also returning to Imported.](finance-systems-architecture/posts/19-onestream/assets/images/19-onestream/workflow-gate-states.jpeg)
 
 **Figure 4:** *A workflow gate is a state machine. The control value comes from the transitions that are not allowed: no consolidation without lock, no lock without certification, no certification while an account is unmapped, and no unlock without an approved reason.*
 
@@ -230,7 +230,7 @@ The integration design determines whether the EPM platform stays a consolidation
 
 **Flash and final close.** A **flash close** is a fast, approximate view of the period, typically a few days in, based on preliminary trial balances and estimates. It gives management early numbers. The **final close** produces the numbers that are certified, locked and published. Northmere runs a flash consolidation on working day 3 and the final consolidation on working day 7, and locks on working day 9. The two must be separate scenarios or versions in the platform, with the flash never overwriting the final. The difference between them is itself a useful quality signal. Large flash-to-final movements in the same entity month after month point at a ledger close problem.
 
-![OneStream at Northmere receives balances, rates, statuses and drivers, and sends locked results onward. Detail stays in the ledgers and is reached by drill-back. The mapping is published to FinDB so that the warehouse and the consolidation use the same translation of accounts.](finance-systems-architecture/diagrams/a7139fa94d067936.png)
+![Ledgers, Kyriba rates, a BlackLine certified flag and planning drivers flow into OneStream, which sends locked results to Workiva and its mapping to FinDB, with a dotted drill-back line to the ledgers.](finance-systems-architecture/posts/19-onestream/assets/images/19-onestream/onestream-inputs-and-outputs.jpeg)
 
 **Figure 5:** *OneStream at Northmere receives balances, rates, statuses and drivers, and sends locked results onward. Detail stays in the ledgers and is reached by drill-back. The mapping is published to FinDB so that the warehouse and the consolidation use the same translation of accounts.*
 
@@ -316,7 +316,7 @@ The working-day-7 incident gave the mapping problem a cost and a date. Dana and 
 
 **Consequences and how they are checked.** The mapping change becomes a testable key control, and brand ERP teams take on work they previously pushed onto group reporting. The quarterly fitness check counts unmapped-load failures (expected to rise at first, then fall), mapping changes made during the close window (target: none), and differences between OneStream and FinDB revenue by brand (target: zero unexplained). [Architecture Governance That Speeds Decisions](#architecture-governance) describes how such decision records are kept and revisited. [Finance Data Architecture: Who Owns the Truth](#finance-data-architecture) treats the group chart of accounts as master data.
 
-![Under the Keystone decision, a new source account cannot go live without an approved mapping, and the same approved mapping reaches FinDB. Ownership sits with the team that changes the source; group reporting approves.](finance-systems-architecture/diagrams/53e113404686070c.png)
+![Brand finance sends a new account to the source ERP and a linked mapping rule to OneStream; group reporting approves the mapping, OneStream gives the ERP a green light to go live, and the approved mapping goes to FinDB.](finance-systems-architecture/posts/19-onestream/assets/images/19-onestream/governed-mapping-change.jpeg)
 
 **Figure 6:** *Under the Keystone decision, a new source account cannot go live without an approved mapping, and the same approved mapping reaches FinDB. Ownership sits with the team that changes the source; group reporting approves.*
 

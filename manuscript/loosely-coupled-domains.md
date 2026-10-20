@@ -266,7 +266,7 @@ A canonical model is only as stable as its change rules. Northmere's rules disti
 
 **Breaking changes** (removing a field, renaming, changing a type, splitting an event) create a new major version and follow a lifecycle that respects the close:
 
-![The lifecycle of a breaking change to a canonical event. The producer publishes both versions until every consumer has migrated and one quarter close has been tied out on both; v1 stops being produced only at a month start outside year-end, and its schema remains readable for the retention period because replay must read history in the version it was written.](finance-systems-architecture/diagrams/13376aaae931f516.png)
+![A path from Proposed and Approved to Dual publish, where v1 and v2 envelopes are both sent while consumers migrate, then Verified after a quarter close, v1 deprecated, v1 retired at a month start, and finally Readable in an archive for replay.](finance-systems-architecture/posts/30-loosely-coupled-domains/assets/images/30-loosely-coupled-domains/breaking-change-lifecycle.jpeg)
 
 **Figure 2:** *The lifecycle of a breaking change to a canonical event. The producer publishes both versions until every consumer has migrated and one quarter close has been tied out on both; v1 stops being produced only at a month start outside year-end, and its schema remains readable for the retention period because replay must read history in the version it was written.*
 
@@ -306,7 +306,7 @@ Contract tests do not replace the registry; they cover what a schema cannot. A s
 {id: loosely-coupled-domains--architecture-adapters-hub-and-consumers}
 ## Architecture: Adapters, Hub and Consumers
 
-![Northmere's target topology. Producers publish canonical events through the adapter kit or a vendor ACL onto Kafka; the hub validates, enriches with reference keys, counts and routes; consumers receive the delivery shape they need; every vendor ledger is reached through its own anti-corruption layer. Business rules live at the edges, never in the hub.](finance-systems-architecture/diagrams/2e5e734bf2e2142e.png)
+![Producers publish through adapter kits onto Kafka; a simple hub validates, adds reference keys, counts and routes, rejects to quarantine, and delivers to the subledger, FinDB, BlackLine, Workday and Fusion, with vendor ledgers including S/4HANA behind their own adapter layers.](finance-systems-architecture/posts/30-loosely-coupled-domains/assets/images/30-loosely-coupled-domains/target-event-topology.jpeg)
 
 **Figure 3:** *Northmere's target topology. Producers publish canonical events through the adapter kit or a vendor ACL onto Kafka; the hub validates, enriches with reference keys, counts and routes; consumers receive the delivery shape they need; every vendor ledger is reached through its own anti-corruption layer. Business rules live at the edges, never in the hub.*
 

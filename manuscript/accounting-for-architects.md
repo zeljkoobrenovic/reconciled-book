@@ -121,7 +121,7 @@ Three layers hold financial truth in an enterprise, and much of finance architec
 
 Each subledger has a **control account** in the GL (for example `Partner payables`) whose balance must equal the sum of the open items in the subledger. Proving that equality every period, **subledger-to-GL reconciliation**, is one of the most important key controls in any finance estate.
 
-![Detail narrows as it moves toward the statements: millions of operational lines become tens of thousands of GL lines. The design works only if every summarized line can be traced back to its detail and the subledger's open items can be proven equal to the GL control account.](finance-systems-architecture/diagrams/34dde9784b3bd508.png)
+![Three million operational lines a day pass through posting rules into the subledger, are funnelled into 38,000 GL lines a day, then trial balance, consolidation and statements; a dotted key arrow drills back from the GL to the subledger, and a level balance scale reconciles the two.](finance-systems-architecture/posts/05-accounting-for-architects/assets/images/05-accounting-for-architects/detail-narrows-to-statements.jpeg)
 
 **Figure 1:** *Detail narrows as it moves toward the statements: millions of operational lines become tens of thousands of GL lines. The design works only if every summarized line can be traced back to its detail and the subledger's open items can be proven equal to the GL control account.*
 
@@ -290,7 +290,7 @@ The booking confirmation itself creates no entry. `BookingConfirmed` carries the
 
 Read the "At 31 Mar close" column as Leila would. The booking has put €600 of cash in a safeguarded account and an equal liability on the balance sheet; March's income statement shows a €1.74 expense and no revenue. A dashboard that called the €600 "March revenue" would overstate March by €600 for this booking, and by €510 even if it netted out the property's share. When the stay completes in April, revenue of €90 appears, the liability changes character from "owed to the traveler" to "owed to the property", and by 26 April every balance-sheet account the booking touched is back to zero except Northmere's own cash, up €88.26, which equals revenue minus the fee.
 
-![One merchant booking moves through five balance-sheet accounts before it settles. Only €90 ever becomes revenue; every other account it touches must return to zero, which is what reconciliation checks.](finance-systems-architecture/diagrams/c552338247c6af82.png)
+![A €600 booking flows through PSP clearing into safeguarding (€598.26, with €1.74 fees) and €90 to the operating bank, while the €600 liability splits into €510 partner payables, paid out via payouts in transit to the property, and €90 revenue — the only amount that stays.](finance-systems-architecture/posts/05-accounting-for-architects/assets/images/05-accounting-for-architects/booking-through-five-accounts.jpeg)
 
 **Figure 3:** *One merchant booking moves through five balance-sheet accounts before it settles. Only €90 ever becomes revenue; every other account it touches must return to zero, which is what reconciliation checks.*
 
@@ -485,7 +485,7 @@ Everything above reduces to five properties that every system producing or holdi
 
 I add a sixth to my own reviews, because the other five depend on it: **posting rules are deterministic and versioned.** The same event, processed under the same rule version, always produces the same entry, and every entry records which rule version produced it. That is what makes a policy change replayable, a historical entry explainable and an automated posting auditable. It is the subject of [Never Update, Only Append: Designing Custom Ledgers](#designing-financial-ledgers).
 
-![Each invariant becomes a check on the posting path: idempotency for completeness, a balance check before acceptance, a period check that redirects rather than rejects late events, append-only storage with source references, and reconciliation of what was summarized.](finance-systems-architecture/diagrams/71d725b6a1ab8490.png)
+![An event with an ID rides a conveyor through three gates — duplicates are acknowledged and dropped, unbalanced entries go to an owned error queue, late events detour to the open period — before being appended to a locked ledger, summarized to the GL and reconciled.](finance-systems-architecture/posts/05-accounting-for-architects/assets/images/05-accounting-for-architects/posting-path-invariant-checks.jpeg)
 
 **Figure 6:** *Each invariant becomes a check on the posting path: idempotency for completeness, a balance check before acceptance, a period check that redirects rather than rejects late events, append-only storage with source references, and reconciliation of what was summarized.*
 

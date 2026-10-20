@@ -98,7 +98,7 @@ Master data authority mostly stays put. Transaction authority moves. A financial
 
 The Lisbon booking (merchant model: €600.00 paid by card through Adyen on 12 March 2027, stay 18–21 April, 15% commission of €90.00, €510.00 payout instructed on 22 April and settled on 26 April) crosses six hand-offs between booking and consolidated statements.
 
-![Authority over the Lisbon booking moves through six hand-offs. Each solid arrow transfers authority for a specific fact; each dotted arrow is the reconciliation that proves the transfer. A hand-off without a dotted arrow is where a Shadow Ledger can grow.](finance-systems-architecture/diagrams/1c7019edb523abb6.png)
+![Authority passes like a relay baton from the booking platform to Northmere Pay, the subledger, the ledger and consolidation, with provider and bank feeding Northmere Pay and dotted lines from each hand-off down to reconciliations that prove the transfer.](finance-systems-architecture/posts/27-systems-of-record/assets/images/27-systems-of-record/authority-relay.jpeg)
 
 **Figure 2:** *Authority over the Lisbon booking moves through six hand-offs. Each solid arrow transfers authority for a specific fact; each dotted arrow is the reconciliation that proves the transfer. A hand-off without a dotted arrow is where a Shadow Ledger can grow.*
 
@@ -211,7 +211,7 @@ The netting case shows the rules at work. Under rule 1, SFP's nightly extract of
 
 A matrix that is not enforced is a description of what people hope is true. Enforcement has three layers, and an estate needs all three because each catches what the others miss.
 
-![Authority is enforced in three layers: preventive write-path restrictions, contracts at each boundary, and detective controls that find what slipped through. The detective layer feeds the data owner and the design authority, which update the matrix or close the path.](finance-systems-architecture/diagrams/4a7e48fc65f1ecf4.png)
+![Three stacked enforcement layers, preventive write-path controls, boundary contracts and detective checks, with breaks from the detective layer going to the data owner and design authority, who update the authority matrix.](finance-systems-architecture/posts/27-systems-of-record/assets/images/27-systems-of-record/three-layers-of-enforcement.jpeg)
 
 **Figure 3:** *Authority is enforced in three layers: preventive write-path restrictions, contracts at each boundary, and detective controls that find what slipped through. The detective layer feeds the data owner and the design authority, which update the matrix or close the path.*
 
@@ -270,7 +270,7 @@ Authority is hardest to keep clean when it is moving. Keystone moves several aut
 
 The rule I use: **dual authority is allowed only as a declared transitional state, with an end date, a split key, and one authority per record at every moment.** "Both systems are authoritative" for the same record is never acceptable, because then neither is.
 
-![Moving the authority for merchant commission invoices from SFP to FI-CA. Dual capability exists for most of the migration, but at every moment each partner's invoices have exactly one issuing system; the transitional row in the matrix carries the end date.](finance-systems-architecture/diagrams/491cb571983bc48a.png)
+![A roadmap moving invoice authority from SFP through a parallel run in April 2028 and cohort cutovers from May 2028 to FI-CA by 31 December 2028, with SFP kept read-only for history and rollback possible per cohort.](finance-systems-architecture/posts/27-systems-of-record/assets/images/27-systems-of-record/moving-invoice-authority.jpeg)
 
 **Figure 5:** *Moving the authority for merchant commission invoices from SFP to FI-CA. Dual capability exists for most of the migration, but at every moment each partner's invoices have exactly one issuing system; the transitional row in the matrix carries the end date.*
 

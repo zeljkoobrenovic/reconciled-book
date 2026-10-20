@@ -52,7 +52,7 @@ The guidance on writing principles that can fail ([Principles That Decide Things
 
 The tools are not fourteen separate forms. Most decisions in a finance estate travel through several of them, and each record points to the next.
 
-![How the templates reference each other. Understanding records feed decisions; decisions produce design contracts; and nearly every operational record rests on a reconciliation card, because in finance a change, a launch, an incident or an agent is finished only when the books are proven to agree.](finance-systems-architecture/diagrams/3593e42a45c57b8b.png)
+![Document stacks flow from understand to decide to design and into a reconciliation card, which forms the foundation for five operational records: cut-over, launch, fitness, incident and agent.](finance-systems-architecture/posts/toolkit/assets/images/toolkit/toolkit-template-map.jpeg)
 
 **Figure 1:** *How the templates reference each other. Understanding records feed decisions; decisions produce design contracts; and nearly every operational record rests on a reconciliation card, because in finance a change, a launch, an incident or an agent is finished only when the books are proven to agree.*
 

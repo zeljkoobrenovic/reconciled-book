@@ -99,7 +99,7 @@ In SAP-centric estates, the centralized style is commonly implemented with SAP M
 
 The target shape is a small number of authoring points, a governed distribution path, and consumers that subscribe rather than create.
 
-![Financial master data has few authoring points and many subscribers. Centralized domains are authored in one governed hub; the partner master coexists with the brand platforms that create partners, with bank attributes authored only in the payments platform in the target state.](finance-systems-architecture/diagrams/29d141fbb7acbf98.png)
+![Few authoring sources feed a financial master data hub and a partner hub, which distribute to many padlocked subscriber systems such as SAP S/4HANA, Oracle Fusion, Workday Financials, OneStream, BlackLine, FinDB and Vertex.](finance-systems-architecture/posts/07-finance-data-architecture/assets/images/07-finance-data-architecture/few-authors-many-subscribers.jpeg)
 
 **Figure 2:** *Financial master data has few authoring points and many subscribers. Centralized domains are authored in one governed hub; the partner master coexists with the brand platforms that create partners, with bank attributes authored only in the payments platform in the target state.*
 
@@ -214,7 +214,7 @@ Changes are classified by impact.
 
 The flow for a significant change looks like this.
 
-![A chart of accounts change is a controlled change with an evidence trail: classified by impact, analyzed for downstream effects, approved by the owner, activated from a period start, and complete only when every consumer has acknowledged it.](finance-systems-architecture/diagrams/386cad379fc66b50.png)
+![A chart of accounts change request is triaged, classified as standard, significant or structural with different approvals, then built, activated at period start, published as an event, acknowledged by consumers and archived as an evidence pack.](finance-systems-architecture/posts/07-finance-data-architecture/assets/images/07-finance-data-architecture/coa-change-flow.jpeg)
 
 **Figure 4:** *A chart of accounts change is a controlled change with an evidence trail: classified by impact, analyzed for downstream effects, approved by the owner, activated from a period start, and complete only when every consumer has acknowledged it.*
 
@@ -239,7 +239,7 @@ Owen's team runs a registry-style match in Q2 2027 across SFP, FI-CA and Northme
 
 The answer is coexistence with **authority set per attribute**.
 
-![The partner master as coexistence: partners are born in the brand platform, matched and governed in a hub that assigns the group partner ID, and distributed to FI-CA and Vertex; in the target state, bank attributes are authored only in the payments platform and flow to the hub, never the other way.](finance-systems-architecture/diagrams/420c8c8a92552ecf.png)
+![Partners created in the extranet flow through SFP into a partner hub with a steward queue and a group partner ID; the hub distributes to SAP FI-CA, Vertex and FinDB, while verified bank details flow from Northmere Pay into the hub and on to Adyen.](finance-systems-architecture/posts/07-finance-data-architecture/assets/images/07-finance-data-architecture/partner-master-coexistence.jpeg)
 
 **Figure 5:** *The partner master as coexistence: partners are born in the brand platform, matched and governed in a hub that assigns the group partner ID, and distributed to FI-CA and Vertex; in the target state, bank attributes are authored only in the payments platform and flow to the hub, never the other way.*
 
@@ -299,7 +299,7 @@ The **data strand** follows records: a group revenue figure comes from OneStream
 
 The **rule strand** follows the master data and rule versions that shaped the number: which mapping version, which account hierarchy, which FX rate set, which posting rule. A reported number is reproducible only if both strands are recorded. When the auditor asks why Tablekin's Q1 2027 usage revenue moved between captions between the original close and the corrected one, the answer is a mapping version change with its approval, and it should take minutes to produce.
 
-![Finance lineage has a data strand and a rule strand. A reported line is reproducible only when both the source records and the versions of the mapping and rate sets that shaped it are recorded.](finance-systems-architecture/diagrams/7bd1709aefff245d.png)
+![Lineage from a group revenue line through OneStream back along a data strand to Tablekin's trial balance, Workday journals and Stripe Billing records, and along a rule strand to the mapping rule set with its change approvals and the FX rate set.](finance-systems-architecture/posts/07-finance-data-architecture/assets/images/07-finance-data-architecture/data-and-rule-lineage.jpeg)
 
 **Figure 6:** *Finance lineage has a data strand and a rule strand. A reported line is reproducible only when both the source records and the versions of the mapping and rate sets that shaped it are recorded.*
 

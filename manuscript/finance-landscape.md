@@ -80,7 +80,7 @@ The numbers come first, because they explain the shape. These are Northmere's 20
 
 The ratios matter more than the totals: roughly **80 to 1** from SFP to the ledger, more than 100 to 1 from a month of ledger lines to reconciled accounts, another factor of ten to the statements. From event to reported line, the data shrinks by six to seven orders of magnitude.
 
-![The volume gradient. Each step up summarizes by one or more orders of magnitude; each dotted arrow is the path an auditor or controller needs back down. A boundary that drops the key on the dotted path is where Lost in Aggregation begins.](finance-systems-architecture/diagrams/565696be8904a52e.png)
+![A staircase of shrinking blocks from 1.1 billion operational events a year through 3 million subledger lines and 38,000 GL lines a day to 6,800 reconciled accounts a month and a few hundred statement lines, with solid arrows summarizing upward and dotted arrows carrying keys back down.](finance-systems-architecture/posts/04-finance-landscape/assets/images/04-finance-landscape/volume-gradient.jpeg)
 
 **Figure 2:** *The volume gradient. Each step up summarizes by one or more orders of magnitude; each dotted arrow is the path an auditor or controller needs back down. A boundary that drops the key on the dotted path is where Lost in Aggregation begins.*
 
@@ -107,7 +107,7 @@ Three consequences follow, and the rest of the chapter depends on them.
 
 The numbering follows the gradient: business events at the bottom, reported numbers at the top, satellites and data beside the stack.
 
-![The finance reference model. Six layers form the stack from business event to published number; satellite services attach at several layers; the data platform reads from all of them and is the book for none. The integration plane carries every arrow; the control plane governs every box.](finance-systems-architecture/diagrams/30a86eb2c7ca5f3b.png)
+![Six stacked layers from operational systems through subledger, accounting core, close and consolidation and planning up to reporting; satellite services attach to the subledger and accounting core, a data platform reads from them and feeds planning, an integration pipe carries the arrows and a control-plane frame surrounds everything.](finance-systems-architecture/posts/04-finance-landscape/assets/images/04-finance-landscape/finance-reference-model.jpeg)
 
 **Figure 4:** *The finance reference model. Six layers form the stack from business event to published number; satellite services attach at several layers; the data platform reads from all of them and is the book for none. The integration plane carries every arrow; the control plane governs every box.*
 
@@ -267,7 +267,7 @@ Vendors sell suites, so a product rarely fits one layer. "Primary" is the layer 
 
 Dana's team gave each of the 214 finance-relevant applications in LeanIX a mandatory primary layer. The core of the result fits on one diagram.
 
-![Northmere's 2027 baseline on the reference model. Stayloft's flow uses every layer; Wayfare's booking platform posts summaries straight into its ledger; the three ledgers meet only at consolidation. Layers 4 to 6 are drawn together for readability, since OneStream spans consolidation, planning and reporting.](finance-systems-architecture/diagrams/816d57f241d37812.png)
+![Three brand columns: Stayloft flows through a subledger into its ledger, Wayfare posts summaries straight into its ledger past an empty subledger slot, Tablekin flows through billing into its ledger, and the three separate ledgers meet only at consolidation on top.](finance-systems-architecture/posts/04-finance-landscape/assets/images/04-finance-landscape/northmere-baseline-columns.jpeg)
 
 **Figure 5:** *Northmere's 2027 baseline on the reference model. Stayloft's flow uses every layer; Wayfare's booking platform posts summaries straight into its ledger; the three ledgers meet only at consolidation. Layers 4 to 6 are drawn together for readability, since OneStream spans consolidation, planning and reporting.*
 

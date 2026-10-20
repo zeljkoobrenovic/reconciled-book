@@ -173,7 +173,7 @@ Finance load follows the calendar. [When the ERP Isn't Enough: Custom Finance Pl
 
 OpenTelemetry is a vendor-neutral, open-source framework for traces, metrics and logs, and explicitly not a storage or visualization backend ([OpenTelemetry](https://opentelemetry.io/docs/what-is-opentelemetry/)). Northmere uses it for what it is good at: propagating the canonical `correlation_id` (the booking ID) and `event_id` across hops, so an engineer can follow one booking from webhook to subledger line to summary. **Tracing follows one transaction; control totals account for all of them.** A trace sampled at 1% says nothing about the 186,240 lines that were posted twice. The money signals therefore come from the ledgers and the delivery ledger, not from sampled telemetry.
 
-![Money signals come from control totals and ledger balances, not from sampled telemetry. OpenTelemetry carries them alongside traces, but every alert is routed by financial flow to the owner who can act, and the same numbers become daily control evidence.](finance-systems-architecture/diagrams/ae3f93a5c40bf7c8.png)
+![Payments, subledger, ledgers and bank statements report control totals into a delivery ledger; a money-in-flight calculator feeds the collector alongside sampled traces and writes daily evidence; an alert router sends each alert to the Pay team, SFP team, close duty or treasury.](finance-systems-architecture/posts/40-resilience-and-security/assets/images/40-resilience-and-security/money-signals-routed-to-owners.jpeg)
 
 **Figure 3:** *Money signals come from control totals and ledger balances, not from sampled telemetry. OpenTelemetry carries them alongside traces, but every alert is routed by financial flow to the owner who can act, and the same numbers become daily control evidence.*
 
@@ -255,7 +255,7 @@ The test passed, in 6 hours 10 minutes, against a 4-hour RTO. It also found the 
 
 The timeline below is the incident from the opening, as Northmere's incident record shows it (all times Amsterdam).
 
-![Two defects that were harmless alone combined under peak load: event IDs minted per download, and a duplicate key that included the recording date. Adyen's retries worked as documented; the control total check, not the infrastructure, caught the result.](finance-systems-architecture/diagrams/d05a7e43b6fbbf85.png)
+![Timeline from evening to night: provider webhooks bounce off the rate limit into a retry queue, a fallback poll posts the reports once, overnight retries cause the same reports to be fetched and posted a second time, and the hourly control check flags 186,240 lines.](finance-systems-architecture/posts/40-resilience-and-security/assets/images/40-resilience-and-security/duplicate-posting-night.jpeg)
 
 **Figure 5:** *Two defects that were harmless alone combined under peak load: event IDs minted per download, and a duplicate key that included the recording date. Adyen's retries worked as documented; the control total check, not the infrastructure, caught the result.*
 
@@ -340,7 +340,7 @@ The playbook below is the one Dana's team, Leila's close team and Marco's securi
 | **Notify** | Who must know, by when? | Classify under DORA and internal policy; inform the audit committee chain if a control deficiency is possible; inform partners or customers if they were affected | Compliance, CISO, controller | Classification with reasoning; any reports filed |
 | **Learn** | What would have prevented or caught it earlier? | Post-incident review; actions with owners and dates; new invariant tests or experiments | Flow owner with architecture | Review record; tracked actions |
 
-![The financial incident path. Restore appears only on the branch where no event log can rebuild the data, and every path ends in a reconciliation that proves the result before evidence and notification.](finance-systems-architecture/diagrams/584a3472daadfa2f.png)
+![Incident path from Detect through a money check (non-financial incidents go to the technical process), Contain and Assess, forking into reversal and re-post or, only with no event log, restore; both branches converge on proof by reconciliation, then evidence, notification and review.](finance-systems-architecture/posts/40-resilience-and-security/assets/images/40-resilience-and-security/financial-incident-path.jpeg)
 
 **Figure 6:** *The financial incident path. Restore appears only on the branch where no event log can rebuild the data, and every path ends in a reconciliation that proves the result before evidence and notification.*
 

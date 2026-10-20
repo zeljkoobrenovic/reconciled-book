@@ -98,7 +98,7 @@ Published designs agree: Square's Books service ([2019](https://developer.square
 
 The redesigned SFP subledger is a pipeline with six responsibilities, each owned by one component.
 
-![The redesigned SFP subledger pipeline. Producers publish business facts; only the accounting engine writes entries, only under an approved rule version and an open period; the summarizer and the tie-out turn the general-ledger posting into a reconcilable boundary rather than a one-way export.](finance-systems-architecture/diagrams/df6fb00d522aa8a5.png)
+![Booking, payment and payout producers publish events to a backbone; intake quarantines bad events and stores the rest; only the accounting engine, using approved rules and an open period, writes the journal; a summarizer posts to the S/4HANA GL and a tie-out weighs the journal against it.](finance-systems-architecture/posts/14-designing-financial-ledgers/assets/images/14-designing-financial-ledgers/subledger-pipeline.jpeg)
 
 **Figure 3:** *The redesigned SFP subledger pipeline. Producers publish business facts; only the accounting engine writes entries, only under an approved rule version and an open period; the summarizer and the tie-out turn the general-ledger posting into a reconcilable boundary rather than a one-way export.*
 
@@ -237,7 +237,7 @@ Three observations a reviewer should make about this table:
 
 The engine's work for one event, in sequence:
 
-![One event becomes one entry. Rule selection uses the event's business time, the period check uses the accounting date, and the posting key turns a duplicate delivery into a no-op that returns the original result.](finance-systems-architecture/diagrams/132970546a310477.png)
+![Two deliveries of the same PaymentCaptured event reach intake and the accounting engine, which picks the rule by business time and checks the period by accounting date, then writes one journal entry; the posting key turns the duplicate into a no-op returning the same entry.](finance-systems-architecture/posts/14-designing-financial-ledgers/assets/images/14-designing-financial-ledgers/one-event-one-entry.jpeg)
 
 **Figure 4:** *One event becomes one entry. Rule selection uses the event's business time, the period check uses the accounting date, and the posting key turns a duplicate delivery into a no-op that returns the original result.*
 
@@ -354,7 +354,7 @@ Two practical details trip teams up. **Time zones**: the accounting date is a lo
 
 Periods are per legal entity, per ledger. The period table is the engine's gate:
 
-![SFP period states. Standard event postings land only in Open periods; SoftClosed accepts only approved adjustment entries; Closed and Locked accept nothing. Reopening is an exception with its own approval and evidence, not an operational convenience.](finance-systems-architecture/diagrams/95ae5c36e4725ccb.png)
+![Period states from Future to Open, SoftClosed, Closed and Locked; open periods take many postings, soft-closed only approved adjustments, closed and locked none; a soft-closed period can return to open, and a closed period can be reopened with approval and closed again.](finance-systems-architecture/posts/14-designing-financial-ledgers/assets/images/14-designing-financial-ledgers/period-states.jpeg)
 
 **Figure 5:** *SFP period states. Standard event postings land only in Open periods; SoftClosed accepts only approved adjustment entries; Closed and Locked accept nothing. Reopening is an exception with its own approval and evidence, not an operational convenience.*
 
