@@ -85,7 +85,7 @@ def main():
     parser.add_argument("--email-readers", action="store_true", help="with --publish: notify readers")
     parser.add_argument("--release-notes", default="", help="with --publish: release notes text")
     parser.add_argument("--poll", type=int, default=10, help="seconds between status checks")
-    parser.add_argument("--timeout", type=int, default=1800, help="max seconds to wait for the build")
+    parser.add_argument("--timeout", type=int, default=3600, help="max seconds to wait for the build")
     parser.add_argument("--no-build", action="store_true", help="skip the build, only download the latest files")
     args = parser.parse_args()
 
